@@ -2,6 +2,25 @@
   background: #ddd;
   text-align: center;
 
+  img {
+    max-width: 75%;
+    max-height: 75%;
+  }
+
+  &__title {
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+
+  &__author {
+    font-size: 1.4rem;
+  }
+
+  &__published {
+    opacity: 1;
+    font-size: 1.1rem;
+  }
+
   &__offer {
     display: none;
   }

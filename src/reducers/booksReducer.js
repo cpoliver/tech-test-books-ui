@@ -1,17 +1,35 @@
-import { repeat } from 'ramda';
+import { flatten, repeat } from 'ramda';
 
-const mockBook = {
-  title: 'The Devil\'s Doorstop',
+const mockBooks = [{
+  title: 'The Man in Black',
+  genre: 'romance',
+  author: {
+    gender: 'female',
+    firstName: 'Phoebe',
+    surname: 'Overton'
+  },
+  publishedOn: '2003-02-08'
+}, {
+  title: 'Possessed by Darkness',
   genre: 'horror',
   author: {
     gender: 'non-binary',
-    firstName: 'Ashley',
-    surname: 'Overton'
+    firstName: 'Krzysztof',
+    surname: 'Nowakowski'
   },
-  publishedOn: '2003-11-02'
-};
+  publishedOn: '2013-11-02'
+}, {
+  title: 'Standing Tall',
+  genre: 'non-fiction',
+  author: {
+    gender: 'male',
+    firstName: 'Alex',
+    surname: 'Feinberg'
+  },
+  publishedOn: '2011-11-09'
+}];
 
-const initState =  repeat(mockBook, 24);
+const initState =  flatten(repeat(mockBooks, 3));
 
 const booksReducer = (state = initState, action = {}) => {
   const { type, payload = {} } = action;
