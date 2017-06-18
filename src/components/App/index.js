@@ -1,19 +1,30 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import { Col, Grid, PageHeader, Row } from 'react-bootstrap';
+
+import Book from '../Book';
+
 import './app.css';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <h2>Book List</h2>
-        </div>
-        <p className="App-intro">
-          Coming Soon
-        </p>
-      </div>
-    );
-  }
-}
+const renderBooks = (books) => books.map(
+  () => (
+    <Col md={3}>
+      <Book />
+    </Col>
+  )
+);
 
-export default App;
+const App = ({ books }) => (
+  <Grid>
+    <Row>
+      <PageHeader>Books List</PageHeader>
+    </Row>
+    <Row>
+      {renderBooks(books)}
+    </Row>
+  </Grid>
+);
+
+const mapStateToProps = ({ books }) => ({ books });
+
+export default connect(mapStateToProps)(App);

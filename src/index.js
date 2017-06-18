@@ -7,6 +7,7 @@ import App from './components/App';
 import rootReducer from './reducers';
 import registerServiceWorker from './registerServiceWorker';
 
+import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 
 const store = createStore(rootReducer);
