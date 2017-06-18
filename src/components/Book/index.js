@@ -1,35 +1,36 @@
 import React from 'react';
-import { Col, Row } from 'react-bootstrap';
+import { Col, Panel, Row } from 'react-bootstrap';
 
 import './book.css';
 
 const authorName = ({ firstName, surname }) => `${firstName} ${surname}`;
 const authorGender = ({ gender }) => gender.substring(0, 1).toUpperCase();
 
+const header = (title, author) => (
+  <Row className="book__header">
+    <Col xs={12}>
+      <span className="book__title">{title}</span>
+    </Col>
+    <Col xs={12}>
+      <span className="book__author">
+        <em>by {authorName(author)}</em> ({authorGender(author)})
+      </span>
+    </Col>
+  </Row>
+);
+
 const Book = ({ title, genre, author, publishedOn }) => (
-  <div className="book">
-    <Row className="book__title">
-      <Col xs={12}>
-        <span>{title}</span>
-      </Col>
-    </Row>
-    <Row className="book__author">
-      <Col xs={12}>
-        <span>{authorName(author)} {authorGender(author)}</span>
-      </Col>
-    </Row>
-    <Row className="book__published">
-      <Col xs={12}>
-        <span>{publishedOn}</span>
-      </Col>
-    </Row>
+  <Panel className="book" header={header(title, author)}>
     <Row className="book__detail">
       <Col xs={12}>
         <span>{genre}</span>
       </Col>
+      <Col xs={12}>
+        <span><em>published: {publishedOn}</em></span>
+      </Col>
     </Row>
     <div className="book__offer">Special Offer</div>
-  </div>
+  </Panel>
 );
 
 export default Book;

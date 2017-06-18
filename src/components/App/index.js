@@ -8,7 +8,7 @@ import './app.css';
 
 const renderBooks = (books) => books.map(
   (book) => (
-    <Col xs={12} sm={4} md={3}>
+    <Col xs={12} sm={4} md={3} className="app__book">
       <Book {...book} />
     </Col>
   )
