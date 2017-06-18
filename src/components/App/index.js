@@ -7,9 +7,9 @@ import Book from '../Book';
 import './app.css';
 
 const renderBooks = (books) => books.map(
-  () => (
-    <Col md={3}>
-      <Book />
+  (book) => (
+    <Col xs={12} sm={4} md={3}>
+      <Book {...book} />
     </Col>
   )
 );
