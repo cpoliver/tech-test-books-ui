@@ -27,14 +27,16 @@ const header = (title, author, publishedOn) => (
 );
 
 const Book = ({ title, genre, author, publishedOn }) => (
-  <Panel className="book" header={header(title, author, publishedOn)}>
-    <Row className="book__detail">
-      <Col xs={12}>
-        <img alt={title} src={coverSrc(genre)} />
-      </Col>
-    </Row>
-    <div className="book__offer">Special Offer</div>
-  </Panel>
+  <Col xs={12} sm={6} md={4} lg={3} className="app__book">
+    <Panel className="book" header={header(title, author, publishedOn)}>
+      <Row className="book__detail">
+        <Col xs={12}>
+          <img alt={title} src={coverSrc(genre)} />
+        </Col>
+      </Row>
+      <div className="book__offer">Special Offer</div>
+    </Panel>
+  </Col>
 );
 
 export default Book;
