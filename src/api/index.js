@@ -7,10 +7,10 @@ import {
 
 const SERVER_URL = 'http://localhost:5000/'; // TODO: Make dynamic & document how to change
 
-export const fetchBooks = ({ itemsPerPage, page }) => (dispatch) => {
+export const fetchBooks = ({ itemsPerPage, page, sort = {}, filter = {} }) => (dispatch) => {
   dispatch(fetchBooksStarted({ itemsPerPage, page }));
 
-  axios.get(`${SERVER_URL}/books?itemsPerPage=${itemsPerPage}&page=${page}`).then(
+  axios.get(`${SERVER_URL}/books?itemsPerPage=${itemsPerPage}&page=${page}&sort=${JSON.stringify(sort)}&filter=${JSON.stringify(filter)}`).then(
     books => dispatch(fetchBooksCompleted(books.data)),
     error => dispatch(fetchBooksErrored(error))
   );

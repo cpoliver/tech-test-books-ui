@@ -10,10 +10,10 @@ import './app.css';
 
 const App = ({ bookList, loadMoreBooks }) => (
   <div>
-    <Nav />
+    <Nav itemsPerPage={bookList.itemsPerPage} page={bookList.page} loadMoreBooks={loadMoreBooks} />
     <Grid>
       <Row>
-        <PageHeader>Books List</PageHeader>
+        <PageHeader>Books List: All Genres</PageHeader>
       </Row>
       <Row>
         <BookList {...bookList} loadMoreBooks={loadMoreBooks} />
@@ -24,7 +24,7 @@ const App = ({ bookList, loadMoreBooks }) => (
 
 const mapStateToProps = ({ bookList }) => ({ bookList });
 const mapDispatchToProps = (dispatch) => ({
-  loadMoreBooks: ({ itemsPerPage, page }) => dispatch(fetchBooks({ itemsPerPage, page }))
+  loadMoreBooks: ({ itemsPerPage, page, sort, filter }) => dispatch(fetchBooks({ itemsPerPage, page, sort, filter }))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

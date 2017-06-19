@@ -14,7 +14,7 @@ import './index.css';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
-store.dispatch(fetchBooks({ page: 1, itemsPerPage: 10 }));
+store.dispatch(fetchBooks({ page: 1, itemsPerPage: 8 }));
 store.dispatch(fetchTotal());
 
 render(

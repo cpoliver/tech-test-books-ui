@@ -4,7 +4,7 @@ import { MenuItem, Nav, Navbar, NavDropdown, NavItem } from 'react-bootstrap';
 // <li> used as workdaround for this: https://github.com/react-bootstrap/react-bootstrap/issues/2365
 // unfortunately this leads to console errors
 
-const Navigation = () => (
+const Navigation = ({ itemsPerPage, page, loadMoreBooks }) => (
   <Navbar inverse collapseOnSelect staticTop>
     <Navbar.Header>
       <Navbar.Brand>
@@ -15,8 +15,14 @@ const Navigation = () => (
     <Navbar.Collapse>
       <Nav>
         <NavDropdown eventKey={1} title="Sort" id="basic-nav-dropdown">
-          <MenuItem eventKey={1.1}>Book Title</MenuItem>
-          <MenuItem eventKey={1.2}>Author Surame</MenuItem>
+          <MenuItem eventKey={1.1}
+            onSelect={() => loadMoreBooks({ itemsPerPage, page, sort: { 'title': 1 } })}>
+            Book Title
+          </MenuItem>
+          <MenuItem eventKey={1.2}
+            onSelect={() => loadMoreBooks({ itemsPerPage, page, sort: { 'author.surname': 1 } })}>
+            Author Surame
+          </MenuItem>
         </NavDropdown>
         <NavDropdown eventKey={2} title="Filter" id="basic-nav-dropdown">
           <MenuItem eventKey={2.1}>Adventure</MenuItem>
