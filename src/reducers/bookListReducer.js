@@ -7,7 +7,7 @@ const initState = {
   page: 1,
   totalItems: 0,
   isFetching: false,
-  errorMessage: null,
+  error: {},
   books: [],
 };
 
@@ -15,9 +15,9 @@ const booksReducer = (state = initState, action = {}) => {
   const { type, payload = {} } = action;
 
   const actions = {
-    [FETCH_BOOKS]: mergeAll([{ isFetching: true }, payload, state]),
-    [FETCH_BOOKS_COMPLETED]: assoc('books', payload, merge({ isFetching: false, errorMessage: '' }, state)),
-    [FETCH_BOOKS_ERRORED]: merge({ isFetching: false, error: payload }, state),
+    [FETCH_BOOKS]: mergeAll([state, payload, { isFetching: true }]),
+    [FETCH_BOOKS_COMPLETED]: merge(state, { isFetching: false, error: {}, books: payload }),
+    [FETCH_BOOKS_ERRORED]: merge(state, { isFetching: false, error: payload })
   };
 
   return actions[type] || state;
