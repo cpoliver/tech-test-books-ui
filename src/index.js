@@ -7,14 +7,15 @@ import thunk from 'redux-thunk';
 import App from './components/App';
 import rootReducer from './reducers';
 import registerServiceWorker from './registerServiceWorker';
-import { attemptToFetchBooks } from './actions';
+import { fetchBooks, fetchTotal } from './actions';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
-store.dispatch(attemptToFetchBooks({ page: 1, itemsPerPage: 10 }));
+store.dispatch(fetchBooks({ page: 1, itemsPerPage: 10 }));
+store.dispatch(fetchTotal());
 
 render(
   <Provider store={store}>
