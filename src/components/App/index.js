@@ -6,6 +6,12 @@ import BookList from '../BookList';
 
 import './app.css';
 
+const debugOutput = (bookList) => bookList && (
+  <Row>
+    <pre>{JSON.stringify(bookList, null, 2)}</pre>
+  </Row>
+);
+
 const App = ({ bookList }) => (
   <Grid>
     <Row>
@@ -14,9 +20,7 @@ const App = ({ bookList }) => (
     <Row>
       <BookList books={bookList.books} />
     </Row>
-    <Row>
-      <pre>{JSON.stringify(bookList, null, 2)}</pre>
-    </Row>
+    {debugOutput(bookList)}
   </Grid>
 );
 
