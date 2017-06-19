@@ -1,18 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Col, Grid, PageHeader, Row } from 'react-bootstrap';
+import { Grid, PageHeader, Row } from 'react-bootstrap';
 
-import Book from '../Book';
+import BookList from '../BookList';
 
 import './app.css';
-
-const renderBooks = (books) => books.map(
-  (book) => (
-    <Col xs={12} sm={6} md={4} lg={3} className="app__book">
-      <Book {...book} />
-    </Col>
-  )
-);
 
 const App = ({ books }) => (
   <Grid>
@@ -20,7 +12,7 @@ const App = ({ books }) => (
       <PageHeader>Books List</PageHeader>
     </Row>
     <Row>
-      {renderBooks(books)}
+      <BookList books={books} />
     </Row>
   </Grid>
 );
