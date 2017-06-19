@@ -6,7 +6,7 @@ import {
 } from '../actions/types';
 
 const initState = {
-  itemsPerPage: 10,
+  itemsPerPage: 8,
   page: 1,
   totalBooks: 0,
   isFetching: false,
