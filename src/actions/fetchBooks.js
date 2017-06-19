@@ -21,7 +21,7 @@ export const fetchBooks = ({ itemsPerPage, page }) => {
   return (dispatch) => {
     dispatch(fetchBooksStarted({ itemsPerPage, page }));
 
-    axios.get(`http://localhost:5000/books?count=${itemsPerPage}&page=${page}`).then(
+    axios.get(`http://localhost:5000/books?itemsPerPage=${itemsPerPage}&page=${page}`).then(
       books => dispatch(fetchBooksCompleted(books.data)),
       error => dispatch(fetchBooksErrored(error))
     );
