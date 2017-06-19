@@ -7,7 +7,7 @@ import thunk from 'redux-thunk';
 import App from './components/App';
 import rootReducer from './reducers';
 import registerServiceWorker from './registerServiceWorker';
-import { fetchBooks, fetchTotal } from './actions';
+import { fetchBooks, fetchTotal } from './api';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
