@@ -3,7 +3,7 @@ import { MenuItem, Nav, Navbar, NavDropdown, NavItem } from 'react-bootstrap';
 
 import { GENRES, GENDERS } from '../../api';
 
-import FilterActionDropdown from './ActionDropdown/FilterActionDropdown';
+import FilterActionDropdown from './FilterActionDropdown';
 
 const createFilter = (key) => (value) => ({
   filter: value === 'all' ? {} : { [key]: { $in: [value] } }
@@ -45,7 +45,6 @@ const Navigation = ({ searchParams, updateSearchParams }) => (
           items={GENDERS}
           createFilter={createFilter('author.gender')}
           updateSearchParams={updateSearchParams} />
-        <NavItem eventKey={4}>Admin</NavItem>
       </Nav>
       <Nav pullRight>
         <NavItem eventKey={5} onSelect={() => window.open('https://github.com/cpoliver')}>
