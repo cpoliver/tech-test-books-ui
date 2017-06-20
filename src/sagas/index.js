@@ -1,13 +1,30 @@
-import { all, fork, takeLatest } from 'redux-saga/effects';
+import { all, call, fork, put, select, takeLatest } from 'redux-saga/effects';
 
-import { tryFetchingBooks } from './books';
-import { tryFetchingTotal } from './total';
+import { fetchBooks, fetchTotal } from '../api';
+import { searchParamsSelector } from '../selectors';
+import { FETCH_BOOKS, FETCH_BOOKS_COMPLETED, FETCH_BOOKS_ERRORED } from '../actions/types';
+
+function* fetchBookList() {
+  try {
+    const searchParams = yield select(searchParamsSelector);
+
+    const [booksResponse, totalBooksResponse] = yield all([
+      yield call(fetchBooks, searchParams),
+      yield call(fetchTotal, searchParams)
+    ]);
+
+    const books = booksResponse.data.books;
+    const totalBooks = totalBooksResponse.data.count;
+
+    yield put({type: FETCH_BOOKS_COMPLETED, payload: { books, totalBooks }});
+} catch(error) {
+    yield put({type: FETCH_BOOKS_ERRORED, payload: error });
+  }
+}
 
 export function* rootSaga() {
   yield all([
-    fork(tryFetchingBooks),
-    fork(tryFetchingTotal),
-    takeLatest('FETCH_BOOKS', tryFetchingBooks),
-    takeLatest('FETCH_TOTAL', tryFetchingTotal)
+    fork(fetchBookList),
+    takeLatest(FETCH_BOOKS, fetchBookList)
   ]);
 }

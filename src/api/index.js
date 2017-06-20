@@ -14,12 +14,12 @@ const stringifyParams = ({ itemsPerPage, page, sort = {}, filter = {} }) => {
   });
 };
 
-export const fetchBooks = ({ itemsPerPage, page, sort, filter }) => () => {
+export const fetchBooks = ({ itemsPerPage, page, sort, filter }) => {
   const params = stringifyParams({ itemsPerPage, page, sort, filter});
   return axios.get(`${SERVER_URL}/books?${params}`);
 };
 
-export const fetchTotal = ({ filter }) => () => {
+export const fetchTotal = ({ filter }) => {
   const params = stringifyParams({ filter });
   return axios.get(`${SERVER_URL}/books/count?${params}`);
 };
