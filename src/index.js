@@ -10,6 +10,7 @@ import registerServiceWorker from './registerServiceWorker';
 import { rootSaga } from './sagas'
 
 import 'bootstrap/dist/css/bootstrap.css';
+import './theme/cosmo.min.css';
 import './index.css';
 
 const sagas = createSagaMiddleware()

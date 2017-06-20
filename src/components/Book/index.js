@@ -11,7 +11,7 @@ const index = (publishedOn) => new Date(publishedOn).getTime().toString().split(
 const coverSrc = (genre, publishedOn) => require(`../../../public/covers/${genre}/${index(publishedOn)}.jpg`);
 
 const Book = ({ title, genre, author, publishedOn }) => (
-  <Col xs={12} sm={6} md={3} className="book">
+  <Col xs={12} sm={6} md={4} lg={3} className="book">
     <Row className="book__detail text-center">
       <Col xs={12}>
         <Image alt={title} src={coverSrc(genre, publishedOn)} className="center-block" responsive />

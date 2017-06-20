@@ -1,7 +1,11 @@
 .book {
-  height: 280px;
+  height: 330px;
+  min-height: 330px;
   margin: 2.5rem auto;
+  overflow: hidden;
   text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
   img {
     max-height: 200px;
@@ -9,7 +13,8 @@
   }
 
   &__title {
-    font-size: 1.8rem;
+    color: black;
+    font-size: 1.6rem;
     font-weight: bold;
   }
 
