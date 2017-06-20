@@ -8,7 +8,7 @@ export function* tryFetchingTotal () {
 
   try {
     const { data } = yield call(fetchTotal({}));
-    yield put({ type: FETCH_TOTAL_COMPLETED, payload: data });
+    yield put({ type: FETCH_TOTAL_COMPLETED, payload: data.count });
   } catch(error) {
     yield put({ type: FETCH_TOTAL_ERRORED, payload: error });
   }

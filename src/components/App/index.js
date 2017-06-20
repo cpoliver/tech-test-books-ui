@@ -4,27 +4,36 @@ import { Grid, PageHeader, Row } from 'react-bootstrap';
 
 import Nav from '../Nav';
 import BookList from '../BookList';
-import { fetchBooks } from '../../api';
+import { booksSelector, searchParamsSelector, totalPagesSelector } from '../../selectors';
 
 import './app.css';
 
-const App = ({ bookList, loadMoreBooks }) => (
+const App = ({ books, searchParams, totalPages, fetchBooks }) => (
   <div>
-    <Nav itemsPerPage={bookList.itemsPerPage} page={bookList.page} loadMoreBooks={loadMoreBooks} />
+    <Nav searchParams={searchParams} fetchBooks={fetchBooks} />
     <Grid>
       <Row>
-        <PageHeader>Books List: All Genres</PageHeader>
+        <PageHeader>Books List</PageHeader>
       </Row>
       <Row>
-        <BookList {...bookList} loadMoreBooks={loadMoreBooks} />
+        <BookList
+          books={books}
+          searchParams={searchParams}
+          totalPages={totalPages}
+          fetchBooks={fetchBooks} />
       </Row>
     </Grid>
   </div>
 );
 
-const mapStateToProps = ({ bookList }) => ({ bookList });
+const mapStateToProps = (state) => ({
+  books: booksSelector(state),
+  searchParams: searchParamsSelector(state),
+  totalPages: totalPagesSelector(state)
+});
+
 const mapDispatchToProps = (dispatch) => ({
-  loadMoreBooks: ({ itemsPerPage, page, sort, filter }) => dispatch(fetchBooks({ itemsPerPage, page, sort, filter }))
+  fetchBooks: () => console.log('dispatch FETCH_BOOKS here!')
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

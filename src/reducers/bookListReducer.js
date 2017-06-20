@@ -6,12 +6,16 @@ import {
 } from '../actions/types';
 
 const initState = {
-  itemsPerPage: 8,
-  page: 1,
-  totalBooks: 0,
   isFetching: false,
-  error: {},
+  totalBooks: 0,
+  searchParams: {
+    itemsPerPage: 8,
+    page: 1,
+    filter: {},
+    sort: {}
+  },
   books: [],
+  error: {}
 };
 
 const booksReducer = (state = initState, action = {}) => {
