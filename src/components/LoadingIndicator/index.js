@@ -5,9 +5,11 @@ import casumo from '../../casumo.png'
 import spinner from '../../spinner.png'
 import './loading-indicator.css';
 
-const LoadingOverlay = ({ gender }) => {
+const LoadingOverlay = ({ isLoading }) => {
+  const fadeClass = isLoading ? 'fadein' : 'fadeout';
+
   return (
-    <div  className="loading-indicator">
+    <div className={`loading-indicator ${fadeClass}`}>
       <div className="casumo-spinner">
         <Image src={spinner} alt="loading" className="spinner" responsive />
         <Image src={casumo} alt="loading" className="casumo" responsive />

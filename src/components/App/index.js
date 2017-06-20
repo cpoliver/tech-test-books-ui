@@ -6,11 +6,11 @@ import Nav from '../Nav';
 import BookList from '../BookList';
 import LoadingIndicator from '../LoadingIndicator';
 import { updateSearchParams } from '../../actions';
-import { booksSelector, searchParamsSelector, totalPagesSelector } from '../../selectors';
+import { booksSelector, isLoadingSelector, searchParamsSelector, totalPagesSelector } from '../../selectors';
 
 import './app.css';
 
-const App = ({ books, searchParams, totalPages, updateSearchParams }) => (
+const App = ({ isLoading, books, searchParams, totalPages, updateSearchParams }) => (
   <div>
     <Nav searchParams={searchParams} updateSearchParams={updateSearchParams} />
     <Grid>
@@ -27,12 +27,13 @@ const App = ({ books, searchParams, totalPages, updateSearchParams }) => (
           updateSearchParams={updateSearchParams} />
       </Row>
     </Grid>
-    <LoadingIndicator />
+    <LoadingIndicator isLoading={isLoading} />
   </div>
 );
 
 const mapStateToProps = (state) => ({
   books: booksSelector(state),
+  isLoading: isLoadingSelector(state),
   searchParams: searchParamsSelector(state),
   totalPages: totalPagesSelector(state)
 });

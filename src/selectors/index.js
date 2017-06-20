@@ -1,5 +1,7 @@
 import { createSelector } from 'reselect';
 
+export const isLoadingSelector = (state) => state.bookList.isLoading;
+
 export const booksSelector = (state) => state.bookList.books;
 export const totalBooksSelector = (state) => state.bookList.totalBooks;
 

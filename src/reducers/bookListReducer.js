@@ -3,7 +3,7 @@ import { any, assoc, equals, evolve, flip, has, map, merge, mergeAll, when } fro
 import { FETCH_BOOKS, FETCH_BOOKS_COMPLETED, FETCH_BOOKS_ERRORED, UPDATED_SEARCH_PARAMS_RECEIVED } from '../actions/types';
 
 const initState = {
-  isFetching: false,
+  isLoading: false,
   totalBooks: 0,
   searchParams: {
     itemsPerPage: 8,
@@ -16,7 +16,7 @@ const initState = {
 };
 
 const onCompleteState = {
-  isFetching: false,
+  isLoading: false,
   error: {}
 };
 
@@ -32,9 +32,9 @@ const booksReducer = (state = initState, action = {}) => {
   const { type, payload = {} } = action;
 
   const actions = {
-    [FETCH_BOOKS]: merge(state, { isFetching: true }),
+    [FETCH_BOOKS]: merge(state, { isLoading: true }),
     [FETCH_BOOKS_COMPLETED]: mergeAll([state, onCompleteState, payload]),
-    [FETCH_BOOKS_ERRORED]: merge(state, { isFetching: false, error: payload }),
+    [FETCH_BOOKS_ERRORED]: merge(state, { isLoading: false, error: payload }),
     [UPDATED_SEARCH_PARAMS_RECEIVED]: updateSearchParams(state, payload)
   };
 
