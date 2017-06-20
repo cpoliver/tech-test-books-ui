@@ -24,13 +24,8 @@ function* fetchBookList() {
 }
 
 function* updateSearchParams({ payload }) {
-  const searchParams = payload;
-
-  yield put({ type: UPDATED_SEARCH_PARAMS_RECEIVED, payload: searchParams });
-  console.log('PUT: UPDATED_SEARCH_PARAMS_RECEIVED');
-
+  yield put({ type: UPDATED_SEARCH_PARAMS_RECEIVED, payload: payload.searchParams });
   yield put({ type: FETCH_BOOKS });
-  console.log('PUT: FETCH_BOOKS');
 }
 
 export function* rootSaga() {
