@@ -24,7 +24,7 @@ function* fetchBookList() {
 }
 
 function* updateSearchParams({ payload }) {
-  yield put({ type: UPDATED_SEARCH_PARAMS_RECEIVED, payload: payload.searchParams });
+  yield put({ type: UPDATED_SEARCH_PARAMS_RECEIVED, payload });
   yield put({ type: FETCH_BOOKS });
 }
 
