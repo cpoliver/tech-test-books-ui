@@ -1,10 +1,11 @@
 .book {
-  background: #ddd;
+  height: 280px;
+  margin: 2.5rem auto;
   text-align: center;
 
   img {
-    max-width: 75%;
-    max-height: 75%;
+    max-height: 200px;
+    margin-bottom: 1rem;
   }
 
   &__title {
@@ -13,12 +14,22 @@
   }
 
   &__author {
-    font-size: 1.4rem;
+    color: #333;
+    font-family: 'Circular-Pro-Book-Italic';
+    font-size: 1.5rem;
   }
 
   &__published {
     opacity: 1;
     font-size: 1.1rem;
+    font-family: 'Circular-Pro-Book'
+  }
+
+  &__genre {
+    opacity: 1;
+    font-size: 1.1rem;
+    font-family: 'Circular-Pro-Book-Italic';
+    text-transform: capitalize;
   }
 
   &__offer {
