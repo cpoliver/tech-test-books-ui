@@ -6,7 +6,8 @@ import './book.css';
 const authorName = ({ firstName, surname }) => `${firstName} ${surname}`;
 const authorGender = ({ gender }) => gender.substring(0, 1).toUpperCase();
 
-const coverSrc = (genre) => require(`../../../public/covers/${genre}.jpg`);
+const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+const coverSrc = (genre) => require(`../../../public/covers/${genre}/${randomInt(0, 9)}.jpg`);
 
 const header = (title, author, publishedOn) => (
   <Row className="book__header">
