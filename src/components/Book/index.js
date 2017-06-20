@@ -25,7 +25,7 @@ const Book = ({ title, genre, author, publishedOn }) => (
       </Col>
       <Col xs={12}>
         <span className="book__published">{publishedOn}</span>
-        &nbsp;<small>&bull;</small>&nbsp;
+        &nbsp;<small className="book__bullet">&bull;</small>&nbsp;
         <span className="book__genre">{genre}</span>
       </Col>
     </Row>

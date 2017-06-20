@@ -20,12 +20,18 @@
   }
 
   &__published {
+    color: #999;
     opacity: 1;
     font-size: 1.1rem;
     font-family: 'Circular-Pro-Book'
   }
 
+  &__bullet {
+    color: #ddd;
+  }
+
   &__genre {
+    color: #999;
     opacity: 1;
     font-size: 1.1rem;
     font-family: 'Circular-Pro-Book-Italic';
