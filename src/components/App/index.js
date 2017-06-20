@@ -4,6 +4,7 @@ import { Col, Grid, PageHeader, Row } from 'react-bootstrap';
 
 import Nav from '../Nav';
 import BookList from '../BookList';
+import LoadingIndicator from '../LoadingIndicator';
 import { updateSearchParams } from '../../actions';
 import { booksSelector, searchParamsSelector, totalPagesSelector } from '../../selectors';
 
@@ -26,6 +27,7 @@ const App = ({ books, searchParams, totalPages, updateSearchParams }) => (
           updateSearchParams={updateSearchParams} />
       </Row>
     </Grid>
+    <LoadingIndicator />
   </div>
 );
 

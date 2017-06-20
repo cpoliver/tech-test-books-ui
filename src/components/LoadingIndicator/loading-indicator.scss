@@ -1,0 +1,44 @@
+@keyframes rotating {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.loading-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+
+  display: flex;
+  background: rgba(255, 255, 255, 0.6);
+
+  animation: fadein 2s;
+
+  .casumo-spinner {
+    height: 165px;
+    margin: auto;
+    position: relative;
+    width: 165px;
+
+    img {
+      position: absolute;
+    }
+
+    .casumo {
+      top: 40px;
+    }
+
+    .spinner {
+      left: 37px;
+      top: 40px;
+
+      animation: rotating 2s linear infinite;
+    }
+  }
+}
