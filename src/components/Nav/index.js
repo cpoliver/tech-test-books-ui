@@ -1,9 +1,21 @@
 import React from 'react';
 import { MenuItem, Nav, Navbar, NavDropdown, NavItem } from 'react-bootstrap';
 
-const createFilter = (genre) => ({
-  filter: { genre: { $in: [genre] } }
-});
+import FilterActionDropdown from './ActionDropdown/FilterActionDropdown';
+
+// TODO: move to constants file somewhere
+const genres = [
+  'Adventure',
+  'Children',
+  'Drama',
+  'Fantasy',
+  'Horror',
+  'Humor',
+  'Mystery',
+  'Non-Fiction',
+  'Romance',
+  'Sci-Fi'
+];
 
 const createSort = (field, desc = false) => ({
   sort: { [field]: desc ? -1 : 1 }
@@ -29,48 +41,7 @@ const Navigation = ({ searchParams, updateSearchParams }) => (
             Author Surame
           </MenuItem>
         </NavDropdown>
-        <NavDropdown eventKey={2} title="Genres" id="basic-nav-dropdown">
-          <MenuItem eventKey={2.1}
-            onSelect={() => updateSearchParams(createFilter('adventure'))}>
-            Adventure
-          </MenuItem>
-          <MenuItem eventKey={2.2}
-            onSelect={() => updateSearchParams(createFilter('children'))}>
-            Children
-          </MenuItem>
-          <MenuItem eventKey={2.3}
-            onSelect={() => updateSearchParams(createFilter('drama'))}>
-            Drama
-          </MenuItem>
-          <MenuItem eventKey={2.4}
-            onSelect={() => updateSearchParams(createFilter('fantasy'))}>
-            Fantasy
-          </MenuItem>
-          <MenuItem eventKey={2.5}
-            onSelect={() => updateSearchParams(createFilter('horror'))}>
-            Horror
-          </MenuItem>
-          <MenuItem eventKey={2.6}
-            onSelect={() => updateSearchParams(createFilter('humor'))}>
-            Humor
-          </MenuItem>
-          <MenuItem eventKey={2.7}
-            onSelect={() => updateSearchParams(createFilter('mystery'))}>
-            Mystery
-          </MenuItem>
-          <MenuItem eventKey={2.8}
-            onSelect={() => updateSearchParams(createFilter('non-fiction'))}>
-            Non-Fiction
-          </MenuItem>
-          <MenuItem eventKey={2.9}
-            onSelect={() => updateSearchParams(createFilter('romance'))}>
-            Romance
-          </MenuItem>
-          <MenuItem eventKey={2.10}
-            onSelect={() => updateSearchParams(createFilter('sci-fi'))}>
-            Sci-Fi
-          </MenuItem>
-        </NavDropdown>
+        <FilterActionDropdown title='Genre' eventKey={2} items={genres} updateSearchParams={updateSearchParams} />
         <NavItem eventKey={3}>Admin</NavItem>
       </Nav>
       <Nav pullRight>
