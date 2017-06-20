@@ -1,3 +1,3 @@
-import { FETCH_BOOKS } from './types';
+import { UPDATE_SEARCH_PARAMS } from './types';
 
-export const fetchBooks = () => ({ type: FETCH_BOOKS });
+export const updateSearchParams = (searchParams) => ({ type: UPDATE_SEARCH_PARAMS, payload: searchParams });

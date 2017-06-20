@@ -1,17 +1,15 @@
 import React from 'react';
 import { MenuItem, Nav, Navbar, NavDropdown, NavItem } from 'react-bootstrap';
 
-const applyFilter = (genre, searchParams) => ({
-  ...searchParams,
+const createFilter = (genre) => ({
   filter: { genre: { $in: [genre] } }
 });
 
-const applySort = (field, searchParams, desc = false) => ({
-  ...searchParams,
+const createSort = (field, desc = false) => ({
   sort: { [field]: desc ? -1 : 1 }
 });
 
-const Navigation = ({ searchParams, fetchBooks }) => (
+const Navigation = ({ searchParams, updateSearchParams }) => (
   <Navbar inverse collapseOnSelect staticTop>
     <Navbar.Header>
       <Navbar.Brand>
@@ -23,53 +21,53 @@ const Navigation = ({ searchParams, fetchBooks }) => (
       <Nav>
         <NavDropdown eventKey={1} title="Sort" id="basic-nav-dropdown">
           <MenuItem eventKey={1.1}
-            onSelect={() => fetchBooks(applySort('title', searchParams))}>
+            onSelect={() => updateSearchParams(createSort('title'))}>
             Book Title
           </MenuItem>
           <MenuItem eventKey={1.2}
-            onSelect={() => fetchBooks(applySort('author.surname', searchParams))}>
+            onSelect={() => updateSearchParams(createSort('author.surname'))}>
             Author Surame
           </MenuItem>
         </NavDropdown>
         <NavDropdown eventKey={2} title="Genres" id="basic-nav-dropdown">
           <MenuItem eventKey={2.1}
-            onSelect={() => fetchBooks(applyFilter('adventure', searchParams))}>
+            onSelect={() => updateSearchParams(createFilter('adventure'))}>
             Adventure
           </MenuItem>
           <MenuItem eventKey={2.2}
-            onSelect={() => fetchBooks(applyFilter('children', searchParams))}>
+            onSelect={() => updateSearchParams(createFilter('children'))}>
             Children
           </MenuItem>
           <MenuItem eventKey={2.3}
-            onSelect={() => fetchBooks(applyFilter('drama', searchParams))}>
+            onSelect={() => updateSearchParams(createFilter('drama'))}>
             Drama
           </MenuItem>
           <MenuItem eventKey={2.4}
-            onSelect={() => fetchBooks(applyFilter('fantasy', searchParams))}>
+            onSelect={() => updateSearchParams(createFilter('fantasy'))}>
             Fantasy
           </MenuItem>
           <MenuItem eventKey={2.5}
-            onSelect={() => fetchBooks(applyFilter('horror', searchParams))}>
+            onSelect={() => updateSearchParams(createFilter('horror'))}>
             Horror
           </MenuItem>
           <MenuItem eventKey={2.6}
-            onSelect={() => fetchBooks(applyFilter('humor', searchParams))}>
+            onSelect={() => updateSearchParams(createFilter('humor'))}>
             Humor
           </MenuItem>
           <MenuItem eventKey={2.7}
-            onSelect={() => fetchBooks(applyFilter('mystery', searchParams))}>
+            onSelect={() => updateSearchParams(createFilter('mystery'))}>
             Mystery
           </MenuItem>
           <MenuItem eventKey={2.8}
-            onSelect={() => fetchBooks(applyFilter('non-fiction', searchParams))}>
+            onSelect={() => updateSearchParams(createFilter('non-fiction'))}>
             Non-Fiction
           </MenuItem>
           <MenuItem eventKey={2.9}
-            onSelect={() => fetchBooks(applyFilter('romance', searchParams))}>
+            onSelect={() => updateSearchParams(createFilter('romance'))}>
             Romance
           </MenuItem>
           <MenuItem eventKey={2.10}
-            onSelect={() => fetchBooks(applyFilter('sci-fi', searchParams))}>
+            onSelect={() => updateSearchParams(createFilter('sci-fi'))}>
             Sci-Fi
           </MenuItem>
         </NavDropdown>

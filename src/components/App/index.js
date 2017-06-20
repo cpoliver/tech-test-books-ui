@@ -4,14 +4,14 @@ import { Grid, PageHeader, Row } from 'react-bootstrap';
 
 import Nav from '../Nav';
 import BookList from '../BookList';
-import { fetchBooks } from '../../actions';
+import { updateSearchParams } from '../../actions';
 import { booksSelector, searchParamsSelector, totalPagesSelector } from '../../selectors';
 
 import './app.css';
 
-const App = ({ books, searchParams, totalPages, fetchBooks }) => (
+const App = ({ books, searchParams, totalPages, updateSearchParams }) => (
   <div>
-    <Nav searchParams={searchParams} fetchBooks={fetchBooks} />
+    <Nav searchParams={searchParams} updateSearchParams={updateSearchParams} />
     <Grid>
       <Row>
         <PageHeader>Books List</PageHeader>
@@ -21,7 +21,7 @@ const App = ({ books, searchParams, totalPages, fetchBooks }) => (
           books={books}
           searchParams={searchParams}
           totalPages={totalPages}
-          fetchBooks={fetchBooks} />
+          updateSearchParams={updateSearchParams} />
       </Row>
     </Grid>
   </div>
@@ -34,7 +34,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchBooks: (searchParams) => dispatch(fetchBooks(searchParams))
+  updateSearchParams: (searchParams) => dispatch(updateSearchParams(searchParams))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

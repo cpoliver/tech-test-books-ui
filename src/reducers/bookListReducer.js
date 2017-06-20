@@ -1,6 +1,6 @@
-import { merge, mergeAll } from 'ramda';
+import { evolve, flip, merge, mergeAll } from 'ramda';
 
-import { FETCH_BOOKS, FETCH_BOOKS_COMPLETED, FETCH_BOOKS_ERRORED } from '../actions/types';
+import { FETCH_BOOKS, FETCH_BOOKS_COMPLETED, FETCH_BOOKS_ERRORED, UPDATED_SEARCH_PARAMS_RECEIVED } from '../actions/types';
 
 const initState = {
   isFetching: false,
@@ -21,7 +21,8 @@ const booksReducer = (state = initState, action = {}) => {
   const actions = {
     [FETCH_BOOKS]: merge(state, { isFetching: true }),
     [FETCH_BOOKS_COMPLETED]: mergeAll([state, { isFetching: false, error: {} }, payload]),
-    [FETCH_BOOKS_ERRORED]: merge(state, { isFetching: false, error: payload })
+    [FETCH_BOOKS_ERRORED]: merge(state, { isFetching: false, error: payload }),
+    [UPDATED_SEARCH_PARAMS_RECEIVED]: evolve({ searchParams: flip(merge)(payload) })(state)
   };
 
   return actions[type] || state;

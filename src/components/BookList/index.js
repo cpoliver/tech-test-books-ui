@@ -3,7 +3,7 @@ import { Col, Pagination, Row } from 'react-bootstrap';
 
 import Book from '../Book';
 
-const BookList = ({ books, searchParams, totalPages, fetchBooks }) => {
+const BookList = ({ books, searchParams, totalPages, updateSearchParams }) => {
   const { page } = searchParams;
 
   return (
@@ -17,7 +17,7 @@ const BookList = ({ books, searchParams, totalPages, fetchBooks }) => {
             items={totalPages}
             maxButtons={5}
             activePage={page}
-            onSelect={(newPage) => fetchBooks({ ...searchParams, page: newPage })} />
+            onSelect={(newPage) => updateSearchParams({ page: newPage })} />
         </Col>
       </Row>
     </div>
