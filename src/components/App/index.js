@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Grid, PageHeader, Row } from 'react-bootstrap';
+import { Col, Grid, PageHeader, Row } from 'react-bootstrap';
 
 import Nav from '../Nav';
 import BookList from '../BookList';
@@ -14,7 +14,9 @@ const App = ({ books, searchParams, totalPages, updateSearchParams }) => (
     <Nav searchParams={searchParams} updateSearchParams={updateSearchParams} />
     <Grid>
       <Row>
-        <PageHeader>Books List</PageHeader>
+        <Col xs={12}>
+          <PageHeader>Books List</PageHeader>
+        </Col>
       </Row>
       <Row>
         <BookList
