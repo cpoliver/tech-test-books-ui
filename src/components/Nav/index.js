@@ -5,6 +5,7 @@ import FilterActionDropdown from './ActionDropdown/FilterActionDropdown';
 
 // TODO: move to constants file somewhere
 const genres = [
+  'All',
   'Adventure',
   'Children',
   'Drama',
@@ -17,14 +18,11 @@ const genres = [
   'Sci-Fi'
 ];
 
-const genders = [ 'Female', 'Male', 'Non-Binary' ];
+const genders = [ 'All', 'Female', 'Male', 'Non-Binary' ];
 
 const createFilter = (key) => (value) => ({
-  filter: { [key]: { $in: [value] } }
+  filter: value === 'all' ? {} : { [key]: { $in: [value] } }
 });
-
-const createGenreFilter = createFilter('genre');
-const createGenderFilter = createFilter('author.gender');
 
 const createSort = (field, desc = false) => ({
   sort: { [field]: desc ? -1 : 1 }
@@ -54,13 +52,13 @@ const Navigation = ({ searchParams, updateSearchParams }) => (
           title='Genre'
           eventKey={2}
           items={genres}
-          createFilter={createGenreFilter}
+          createFilter={createFilter('genre')}
           updateSearchParams={updateSearchParams} />
         <FilterActionDropdown
           title='Gender'
           eventKey={3}
           items={genders}
-          createFilter={createGenderFilter}
+          createFilter={createFilter('author.gender')}
           updateSearchParams={updateSearchParams} />
         <NavItem eventKey={4}>Admin</NavItem>
       </Nav>
