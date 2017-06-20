@@ -4,6 +4,7 @@ import { Grid, PageHeader, Row } from 'react-bootstrap';
 
 import Nav from '../Nav';
 import BookList from '../BookList';
+import { fetchBooks } from '../../actions';
 import { booksSelector, searchParamsSelector, totalPagesSelector } from '../../selectors';
 
 import './app.css';
@@ -33,7 +34,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchBooks: () => console.log('dispatch FETCH_BOOKS here!')
-});
+  fetchBooks: (searchParams) => dispatch(fetchBooks(searchParams))
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
