@@ -10,8 +10,5 @@ export const sortSelector = (state) => state.bookList.searchParams.sort;
 export const totalPagesSelector = createSelector(
   totalBooksSelector,
   searchParamsSelector,
-  (totalBooks, { itemsPerPage }) => {
-    console.log(`totalBooks: ${totalBooks} | itemsPerPage: ${itemsPerPage}`)
-    return Math.ceil(totalBooks / itemsPerPage)
-  }
+  (totalBooks, { itemsPerPage }) => Math.ceil(totalBooks / itemsPerPage)
 );
