@@ -8,8 +8,7 @@ import thunk from 'redux-thunk';
 import App from './components/App';
 import rootReducer from './reducers';
 import registerServiceWorker from './registerServiceWorker';
-import { fetchBooks, fetchTotal } from './api';
-import { helloSaga } from './sagas'
+import { rootSaga } from './sagas'
 
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
@@ -17,10 +16,7 @@ import './index.css';
 const sagas = createSagaMiddleware()
 const store = createStore(rootReducer, applyMiddleware(thunk, sagas));
 
-sagas.run(helloSaga);
-
-store.dispatch(fetchBooks({ page: 1, itemsPerPage: 8 }));
-store.dispatch(fetchTotal());
+sagas.run(rootSaga);
 
 render(
   <Provider store={store}>

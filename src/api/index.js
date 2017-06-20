@@ -1,26 +1,23 @@
 import axios from 'axios';
+import { join, map, pipe, toPairs } from 'ramda';
 
-import {
-  fetchBooksStarted, fetchBooksCompleted, fetchBooksErrored,
-  fetchTotalStarted, fetchTotalCompleted, fetchTotalErrored
-} from '../actions';
+const SERVER_URL = 'http://localhost:5000'; // TODO: Make dynamic & document how to change
 
-const SERVER_URL = 'http://localhost:5000/'; // TODO: Make dynamic & document how to change
-
-export const fetchBooks = ({ itemsPerPage, page, sort = {}, filter = {} }) => (dispatch) => {
-  dispatch(fetchBooksStarted({ itemsPerPage, page }));
-
-  axios.get(`${SERVER_URL}/books?itemsPerPage=${itemsPerPage}&page=${page}&sort=${JSON.stringify(sort)}&filter=${JSON.stringify(filter)}`).then(
-    books => dispatch(fetchBooksCompleted(books.data)),
-    error => dispatch(fetchBooksErrored(error))
-  );
+const stringifyParams = ({ itemsPerPage, page, sort, filter }) => {
+  return pipe(toPairs, map(join('=')), join('&'))({
+    itemsPerPage,
+    page,
+    sort: JSON.stringify(sort),
+    filter: JSON.stringify(filter)
+  });
 };
 
-export const fetchTotal = () => (dispatch) => {
-  dispatch(fetchTotalStarted());
+export const fetchBooks = ({ itemsPerPage, page, sort = {}, filter = {} }) => () => {
+  const params = stringifyParams({ itemsPerPage, page, sort, filter});
+  return axios.get(`${SERVER_URL}/books?${params}`);
+};
 
-  axios.get(`${SERVER_URL}/books/count`).then(
-    total => dispatch(fetchTotalCompleted(total.data)),
-    error => dispatch(fetchTotalErrored(error))
-  );
+export const fetchTotal = ({ filter }) => {
+  const params = stringifyParams({ filter });
+  return axios.get(`${SERVER_URL}/books/count?${params}`);
 };

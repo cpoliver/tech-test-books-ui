@@ -1,4 +1,4 @@
-import { merge, mergeAll } from 'ramda';
+import { merge } from 'ramda';
 
 import {
   FETCH_BOOKS, FETCH_BOOKS_COMPLETED, FETCH_BOOKS_ERRORED,
@@ -18,9 +18,10 @@ const booksReducer = (state = initState, action = {}) => {
   const { type, payload = {} } = action;
 
   const actions = {
-    [FETCH_BOOKS]: mergeAll([state, payload, { isFetching: true }]),
+    [FETCH_BOOKS]: merge(state, { isFetching: true }),
     [FETCH_BOOKS_COMPLETED]: merge(state, { isFetching: false, error: {}, books: payload }),
     [FETCH_BOOKS_ERRORED]: merge(state, { isFetching: false, error: payload }),
+
     [FETCH_TOTAL]: merge(state, { totalBooks: payload }),
     [FETCH_TOTAL_COMPLETED]: merge(state, { error: {}, totalBooks: payload }),
     [FETCH_TOTAL_ERRORED]: merge(state, { error: payload })
