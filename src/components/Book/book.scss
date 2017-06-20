@@ -7,7 +7,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 
-  img {
+  &__cover {
     max-height: 200px;
     margin-bottom: 1rem;
   }
@@ -19,9 +19,18 @@
   }
 
   &__author {
-    color: #333;
     font-family: 'Circular-Pro-Book-Italic';
     font-size: 1.5rem;
+  }
+
+  &__gender {
+    display: inline-block;
+    height: 1rem;
+    margin-top: -0.4rem;
+    opacity: 0.5;
+    position: relative;
+    top: -0.1rem;
+    width: 1rem;
   }
 
   &__published {
