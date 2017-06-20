@@ -3,7 +3,6 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import thunk from 'redux-thunk';
 
 import App from './components/App';
 import rootReducer from './reducers';
@@ -14,7 +13,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 
 const sagas = createSagaMiddleware()
-const store = createStore(rootReducer, applyMiddleware(thunk, sagas));
+const store = createStore(rootReducer, applyMiddleware(sagas));
 
 sagas.run(rootSaga);
 

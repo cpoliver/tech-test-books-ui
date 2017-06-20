@@ -12,7 +12,6 @@
     "react-redux": "^5.0.5",
     "redux": "^3.7.0",
     "redux-saga": "^0.15.3",
-    "redux-thunk": "^2.2.0",
     "reselect": "^3.0.1"
   },
   "devDependencies": {
