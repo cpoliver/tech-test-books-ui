@@ -1,24 +1,9 @@
 import React from 'react';
 import { MenuItem, Nav, Navbar, NavDropdown, NavItem } from 'react-bootstrap';
 
+import { GENRES, GENDERS } from '../../api';
+
 import FilterActionDropdown from './ActionDropdown/FilterActionDropdown';
-
-// TODO: move to constants file somewhere
-const genres = [
-  'All',
-  'Adventure',
-  'Children',
-  'Drama',
-  'Fantasy',
-  'Horror',
-  'Humor',
-  'Mystery',
-  'Non-Fiction',
-  'Romance',
-  'Sci-Fi'
-];
-
-const genders = [ 'All', 'Female', 'Male', 'Non-Binary' ];
 
 const createFilter = (key) => (value) => ({
   filter: value === 'all' ? {} : { [key]: { $in: [value] } }
@@ -51,13 +36,13 @@ const Navigation = ({ searchParams, updateSearchParams }) => (
         <FilterActionDropdown
           title='Genre'
           eventKey={2}
-          items={genres}
+          items={GENRES}
           createFilter={createFilter('genre')}
           updateSearchParams={updateSearchParams} />
         <FilterActionDropdown
           title='Gender'
           eventKey={3}
-          items={genders}
+          items={GENDERS}
           createFilter={createFilter('author.gender')}
           updateSearchParams={updateSearchParams} />
         <NavItem eventKey={4}>Admin</NavItem>
