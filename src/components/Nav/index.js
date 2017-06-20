@@ -94,11 +94,11 @@ const Navigation = ({ itemsPerPage, page, loadMoreBooks }) => (
             Sci-Fi
           </MenuItem>
         </NavDropdown>
-        <NavItem eventKey={3.1}>Admin</NavItem>
+        <NavItem eventKey={3}>Admin</NavItem>
       </Nav>
       <Nav pullRight>
-        <li role="presentation"><a href="https://github.com/cpoliver">Github</a></li>
-        <li role="presentation"><a href="https://linkedin.com/in/cpoliver">LinkedIn</a></li>
+        <NavItem eventKey={4} onSelect={() => window.open('https://github.com/cpoliver')}>Github</NavItem>
+        <NavItem eventKey={5} onSelect={() => window.open('https://linkedin.com/in/cpoliver')}>LinkedIn</NavItem>
       </Nav>
     </Navbar.Collapse>
   </Navbar>
