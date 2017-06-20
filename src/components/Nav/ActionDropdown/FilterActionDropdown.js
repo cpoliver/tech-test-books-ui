@@ -1,22 +1,22 @@
 import React from 'react';
 import { NavDropdown, MenuItem } from 'react-bootstrap';
 
-const createFilter = (genre) => ({
-  filter: { genre: { $in: [genre] } }
-});
-
-const renderMenuItem = ({ name, eventKey, updateSearchParams }, key) => (
-  <MenuItem
+const renderMenuItem = ({ name, key, eventKey, createFilter, updateSearchParams }) => (
+  <MenuItem key={key}
     eventKey={eventKey + (key / 10)}
     onSelect={() => updateSearchParams(createFilter(name.toLowerCase()))}>
     {name}
   </MenuItem>
 );
 
-export const FilterActionDropdown = ({ title, items, eventKey, updateSearchParams }) => (
-  <NavDropdown eventKey={eventKey} title={title} id="basic-nav-dropdown">
-    {items.map((name, key) => renderMenuItem({ name, key, eventKey, updateSearchParams }))}
-  </NavDropdown>
-);
+const FilterActionDropdown = (props) => {
+  const { title, items, eventKey } = props;
+
+  return (
+    <NavDropdown eventKey={eventKey} title={title} id="basic-nav-dropdown">
+      {items.map((name, key) => renderMenuItem({ ...props, name, key }))}
+    </NavDropdown>
+  );
+}
 
 export default FilterActionDropdown;
