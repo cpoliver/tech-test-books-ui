@@ -5,9 +5,11 @@ import { Col, Grid, PageHeader, Row } from 'react-bootstrap';
 
 import Nav from '../Nav';
 import BookList from '../BookList';
+import FilterMenu from '../FilterMenu';
 import LoadingIndicator from '../LoadingIndicator';
 import { updateSearchParams } from '../../actions';
 import { booksSelector, isLoadingSelector, searchParamsSelector, totalPagesSelector } from '../../selectors';
+import { GENRES } from '../../lib/constants';
 import { bookShape, searchParamsType } from '../../lib/types';
 
 const App = ({ isLoading, books, searchParams, totalPages, updateSearchParams }) => (
@@ -17,6 +19,12 @@ const App = ({ isLoading, books, searchParams, totalPages, updateSearchParams })
       <Row>
         <Col xs={12}>
           <PageHeader>Books List</PageHeader>
+        </Col>
+        <Col xs={12}>
+          <FilterMenu
+            options={GENRES}
+            searchParams={searchParams}
+            updateSearchParams={updateSearchParams} />
         </Col>
       </Row>
       <Row>

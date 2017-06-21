@@ -5,7 +5,7 @@ import { UPDATED_SEARCH_PARAMS_RECEIVED } from '../actions/types';
 const initState = {
   itemsPerPage: 8,
   page: 1,
-  filter: {},
+  filters: [],
   sort: {}
 };
 
@@ -13,7 +13,7 @@ const resetPage = assoc('page', 1);
 const hasProps = (props) => (obj) => any(equals(true), map(flip(has)(obj), props));
 
 const updateSearchParams = (state, payload) => {
-  const newParams = when(hasProps(['filter', 'sort', 'itemsPerPage']), resetPage)(payload);
+  const newParams = when(hasProps(['filters', 'sort', 'itemsPerPage']), resetPage)(payload);
   return merge(state, newParams);
 };
 

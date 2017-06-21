@@ -6,7 +6,7 @@ import { UPDATED_SEARCH_PARAMS_RECEIVED } from '../../actions/types';
 const initState = {
   itemsPerPage: 8,
   page: 1,
-  filter: {},
+  filters: [],
   sort: {}
 };
 
@@ -29,7 +29,7 @@ describe('searchReducer', () => {
     const newSearchParams = {
       itemsPerPage: 8,
       page: 1,
-      filter: { changed: true },
+      filters: [ 'changed' ],
       sort: { changed: true }
     };
 
@@ -47,7 +47,7 @@ describe('searchReducer', () => {
     });
 
     it('should reset page to 1, if the sort has changed', () => {
-      const payload = dissoc('filter', newSearchParams);
+      const payload = dissoc('filters', newSearchParams);
       const state = reducer(page3State, { type: UPDATED_SEARCH_PARAMS_RECEIVED, payload });
 
       expect(state.page).toEqual(1);

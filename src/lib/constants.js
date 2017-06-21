@@ -3,7 +3,6 @@ export const ITEMS_PER_PAGE_OPTIONS = [8, 16, 24, 32, 64];
 export const GENDERS = [ 'All', 'Female', 'Male', 'Non-Binary' ];
 
 export const GENRES = [
-  'All',
   'Adventure',
   'Children',
   'Drama',

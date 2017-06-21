@@ -23,7 +23,7 @@ export const bookShape = PropTypes.shape(bookType);
 export const searchParamsType = PropTypes.shape({
   itemsPerPage: PropTypes.oneOf(ITEMS_PER_PAGE_OPTIONS),
   page: PropTypes.number,
-  filter: PropTypes.object,
+  filter: PropTypes.arrayOf(PropTypes.string),
   sort: PropTypes.object
 });
 

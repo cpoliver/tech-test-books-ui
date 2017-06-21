@@ -1,19 +1,19 @@
 import { all, call, fork, put, select, takeLatest } from 'redux-saga/effects';
 
 import { fetchBooks, fetchTotal } from '../api';
-import { searchParamsSelector } from '../selectors';
+import { queryStringSelector } from '../selectors';
 import { FETCH_BOOKS, FETCH_BOOKS_COMPLETED, FETCH_BOOKS_ERRORED,
          UPDATE_SEARCH_PARAMS, UPDATED_SEARCH_PARAMS_RECEIVED } from '../actions/types';
 
 function* fetchBookList() {
   try {
-    const searchParams = yield select(searchParamsSelector);
+    const queryString = yield select(queryStringSelector);
 
-    console.log(searchParams);
+    console.log(queryString);
 
     const [booksResponse, totalResponse] = yield all([
-      yield call(fetchBooks, searchParams),
-      yield call(fetchTotal, searchParams)
+      yield call(fetchBooks, queryString),
+      yield call(fetchTotal, queryString)
     ]);
 
     const books = booksResponse.data;
