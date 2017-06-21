@@ -24,7 +24,7 @@ const resetPage = assoc('page', 1);
 const hasProps = (props) => (obj) => any(equals(true), map(flip(has)(obj), props));
 
 const updateSearchParams = (state, payload) => {
-  const newParams = when(hasProps(['filter', 'sort']), resetPage)(payload);
+  const newParams = when(hasProps(['filter', 'sort', 'itemsPerPage']), resetPage)(payload);
   return evolve({ searchParams: flip(merge)(newParams) })(state);
 };
 
@@ -38,8 +38,7 @@ const booksReducer = (state = initState, action = {}) => {
     [UPDATED_SEARCH_PARAMS_RECEIVED]: updateSearchParams(state, payload)
   };
 
-  const x = actions[type] || state;
-  return x;
+  return actions[type] || state;
 };
 
 export default booksReducer;
