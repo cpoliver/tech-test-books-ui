@@ -8,8 +8,6 @@ import LoadingIndicator from '../LoadingIndicator';
 import { updateSearchParams } from '../../actions';
 import { booksSelector, isLoadingSelector, searchParamsSelector, totalPagesSelector } from '../../selectors';
 
-import './app.css';
-
 const App = ({ isLoading, books, searchParams, totalPages, updateSearchParams }) => (
   <div>
     <Nav searchParams={searchParams} updateSearchParams={updateSearchParams} />
