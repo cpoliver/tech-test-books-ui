@@ -1,4 +1,4 @@
-import { any, assoc, equals, evolve, flip, has, map, merge, mergeAll, when } from 'ramda';
+import { any, assoc, equals, evolve, flip, has, map, merge, when } from 'ramda';
 
 import { FETCH_BOOKS, FETCH_BOOKS_COMPLETED, FETCH_BOOKS_ERRORED, UPDATED_SEARCH_PARAMS_RECEIVED } from '../actions/types';
 
@@ -33,7 +33,7 @@ const booksReducer = (state = initState, action = {}) => {
 
   const actions = {
     [FETCH_BOOKS]: merge(state, { isLoading: true }),
-    [FETCH_BOOKS_COMPLETED]: mergeAll([state, onCompleteState, payload]),
+    [FETCH_BOOKS_COMPLETED]: merge(state, { ...onCompleteState, ...payload }),
     [FETCH_BOOKS_ERRORED]: merge(state, { isLoading: false, error: payload }),
     [UPDATED_SEARCH_PARAMS_RECEIVED]: updateSearchParams(state, payload)
   };

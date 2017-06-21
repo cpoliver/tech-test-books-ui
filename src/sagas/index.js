@@ -14,7 +14,7 @@ function* fetchBookList() {
       yield call(fetchTotal, searchParams)
     ]);
 
-    const books = booksResponse.data.books;
+    const books = booksResponse.data;
     const totalBooks = totalBooksResponse.data.count;
 
     yield put({ type: FETCH_BOOKS_COMPLETED, payload: { books, totalBooks } });
