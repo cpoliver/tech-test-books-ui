@@ -1,25 +1,28 @@
 import React from 'react';
 import { Col, Image, Row } from 'react-bootstrap';
+import { complement, isEmpty } from 'ramda';
 
 import Gender from '../Gender';
+import Offer from '../Offer';
+import { getBestOffer } from '../../lib/offers';
 import { bookType } from '../../lib/types';
 
 import './book.css';
 
-// get a "random" image that's always the same for any given book
-export const getIndex = (publishedOn) => new Date(publishedOn).getTime().toString().split('')[3];
-
+const getIndex = (publishedOn) => new Date(publishedOn).getTime().toString().split('')[3];
 const getCover = ({ genre, publishedOn }) => require(`../../../public/covers/${genre}/${getIndex(publishedOn)}.jpg`);
-
-const authorName = ({ firstName, surname }) => `${firstName} ${surname}`;
 
 const Book = (props) => {
   const { title, genre, author, publishedOn } = props;
+
+  const offer = getBestOffer(props);
+  const offerExists = complement(isEmpty)(offer);
 
   return (
     <Col xs={12} sm={6} md={4} lg={3} className="book">
       <Row className="book__detail text-center">
         <Col xs={12}>
+          {offerExists && <Offer {...offer} />}
           <Image alt={title} src={getCover(props)} className="book__cover center-block" responsive />
         </Col>
         <Col xs={12}>
@@ -27,7 +30,7 @@ const Book = (props) => {
         </Col>
         <Col xs={12}>
           <span className="book__author">
-            {authorName(author)}&nbsp;
+            {`${author.firstName} ${author.surname}`}&nbsp;
             <div className="book__gender"><Gender gender={author.gender} /></div>
           </span>
         </Col>

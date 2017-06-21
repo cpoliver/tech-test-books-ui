@@ -26,3 +26,8 @@ export const searchParamsType = PropTypes.shape({
   filter: PropTypes.object,
   sort: PropTypes.object
 });
+
+export const offerShape = {
+  name: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired
+};

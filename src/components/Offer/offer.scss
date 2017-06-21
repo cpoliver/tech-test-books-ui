@@ -1,0 +1,31 @@
+$background: #e32c27;
+$foreground: white;
+
+@keyframes pulse {
+   0% { color: $foreground; }
+  30% { color: $background; }
+  60% { color: $foreground; }
+}
+
+.offer {
+  cursor: default;
+  left: 3rem;
+  position: absolute;
+  top: 1rem;
+
+  .glyphicon {
+    animation: pulse 4s infinite;
+    background: $background;
+    border: 0.5rem solid $background;
+    border-radius: 10rem;
+    font-size: 1.5rem;
+    color: $foreground;
+
+    position: absolute;
+  }
+
+  &__name {
+    position: relative;
+    text-transform: capitalize;
+  }
+}
