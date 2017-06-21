@@ -3,7 +3,7 @@ import { MenuItem, Nav, Navbar, NavDropdown, NavItem } from 'react-bootstrap';
 
 import { GENRES, GENDERS } from '../../api';
 
-import FilterActionDropdown from './FilterActionDropdown';
+import FilterDropdown from './FilterDropdown';
 
 const createFilter = (key) => (value) => ({
   filter: value === 'all' ? {} : { [key]: { $in: [value] } }
@@ -33,13 +33,13 @@ const Navigation = ({ searchParams, updateSearchParams }) => (
             Author Surame
           </MenuItem>
         </NavDropdown>
-        <FilterActionDropdown
+        <FilterDropdown
           title='Genre'
           eventKey={2}
           items={GENRES}
           createFilter={createFilter('genre')}
           updateSearchParams={updateSearchParams} />
-        <FilterActionDropdown
+        <FilterDropdown
           title='Gender'
           eventKey={3}
           items={GENDERS}
