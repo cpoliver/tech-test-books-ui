@@ -3,22 +3,6 @@ import { any, isNil, join, map, pipe, reject, toPairs } from 'ramda';
 
 const SERVER_URL = 'http://localhost:5000'; // TODO: Make dynamic & document how to change
 
-export const GENDERS = [ 'All', 'Female', 'Male', 'Non-Binary' ];
-
-export const GENRES = [
-  'All',
-  'Adventure',
-  'Children',
-  'Drama',
-  'Fantasy',
-  'Horror',
-  'Humor',
-  'Mystery',
-  'Non-Fiction',
-  'Romance',
-  'Sci-Fi'
-];
-
 const objectToQueryString = pipe(toPairs, reject(any(isNil)), map(join('=')), join('&'));
 
 const stringifyParams = ({ itemsPerPage, page, sort = {}, filter = {} }) => {

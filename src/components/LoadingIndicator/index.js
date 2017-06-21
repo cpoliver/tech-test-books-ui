@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Image } from 'react-bootstrap';
 
 import casumo from '../../casumo.png'
@@ -16,6 +17,10 @@ const LoadingOverlay = ({ isLoading }) => {
       </div>
     </div>
   );
+};
+
+LoadingOverlay.propTypes = {
+  isLoading: PropTypes.bool.isRequired
 };
 
 export default LoadingOverlay;

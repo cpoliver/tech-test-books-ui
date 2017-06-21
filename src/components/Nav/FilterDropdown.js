@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { NavDropdown, MenuItem } from 'react-bootstrap';
 
 const renderMenuItem = ({ name, key, eventKey, createFilter, updateSearchParams }) => (
@@ -18,5 +19,13 @@ const FilterDropdown = (props) => {
     </NavDropdown>
   );
 }
+
+FilterDropdown.propTypes = {
+  title: PropTypes.string.isRequired,
+  items: PropTypes.arrayOf(PropTypes.string).isRequired,
+  eventKey: PropTypes.number.isRequired,
+  createFilter: PropTypes.func.isRequired,
+  updateSearchParams: PropTypes.func.isRequired
+};
 
 export default FilterDropdown;

@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { NavDropdown, MenuItem } from 'react-bootstrap';
 
-const ITEMS_PER_PAGE_OPTIONS = [8, 16, 24, 32, 64];
+import { ITEMS_PER_PAGE_OPTIONS } from '../../lib/constants';
 
 const renderMenuItem = ({ amount, key, eventKey, updateSearchParams }) => (
   <MenuItem key={key}
@@ -16,5 +17,11 @@ const ItemsPerPageDropdown = ({ title, eventKey, updateSearchParams }) => (
     {ITEMS_PER_PAGE_OPTIONS.map((amount, key) => renderMenuItem({ amount, key, eventKey, updateSearchParams }))}
   </NavDropdown>
 );
+
+ItemsPerPageDropdown.propTypes = {
+  title: PropTypes.string.isRequired,
+  eventKey: PropTypes.number.isRequired,
+  updateSearchParams: PropTypes.func.isRequired
+};
 
 export default ItemsPerPageDropdown;

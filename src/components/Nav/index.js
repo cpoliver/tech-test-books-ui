@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { MenuItem, Nav, Navbar, NavDropdown, NavItem } from 'react-bootstrap';
-
-import { GENRES, GENDERS } from '../../api';
 
 import FilterDropdown from './FilterDropdown';
 import ItemsPerPageDropdown from './ItemsPerPageDropdown';
+import { GENRES, GENDERS } from '../../lib/constants';
+import { searchParamsType } from '../../lib/types';
 
 const createFilter = (key) => (value) => ({
   filter: value === 'all' ? {} : { [key]: { $in: [value] } }
@@ -62,5 +63,10 @@ const Navigation = ({ searchParams, updateSearchParams }) => (
     </Navbar.Collapse>
   </Navbar>
 );
+
+Navigation.propTypes = {
+  searchParams: searchParamsType,
+  updateSearchParams: PropTypes.func.isRequired
+};
 
 export default Navigation;

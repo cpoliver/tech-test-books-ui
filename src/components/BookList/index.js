@@ -1,7 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Col, Pagination, Row } from 'react-bootstrap';
 
 import Book from '../Book';
+import { bookShape, searchParamsType } from '../../lib/types';
 
 const BookList = ({ books, searchParams, totalPages, updateSearchParams }) => {
   const { page } = searchParams;
@@ -23,5 +25,12 @@ const BookList = ({ books, searchParams, totalPages, updateSearchParams }) => {
     </div>
   );
 }
+
+BookList.propTypes = {
+  books: PropTypes.arrayOf(bookShape).isRequired,
+  searchParams: searchParamsType.isRequired,
+  totalPages: PropTypes.number.isRequired,
+  updateSearchParams: PropTypes.func.isRequired
+};
 
 export default BookList;

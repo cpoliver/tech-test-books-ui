@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Col, Grid, PageHeader, Row } from 'react-bootstrap';
 
@@ -7,6 +8,7 @@ import BookList from '../BookList';
 import LoadingIndicator from '../LoadingIndicator';
 import { updateSearchParams } from '../../actions';
 import { booksSelector, isLoadingSelector, searchParamsSelector, totalPagesSelector } from '../../selectors';
+import { bookShape, searchParamsType } from '../../lib/types';
 
 const App = ({ isLoading, books, searchParams, totalPages, updateSearchParams }) => (
   <div>
@@ -28,6 +30,14 @@ const App = ({ isLoading, books, searchParams, totalPages, updateSearchParams })
     <LoadingIndicator isLoading={isLoading} />
   </div>
 );
+
+App.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
+  books: PropTypes.arrayOf(bookShape).isRequired,
+  searchParams: searchParamsType.isRequired,
+  totalPages: PropTypes.number.isRequired,
+  updateSearchParams: PropTypes.func.isRequired
+};
 
 const mapStateToProps = (state) => ({
   books: booksSelector(state),

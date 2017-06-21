@@ -2,6 +2,8 @@ import React from 'react';
 import { Col, Image, Row } from 'react-bootstrap';
 
 import Gender from '../Gender';
+import { bookType } from '../../lib/types';
+
 import './book.css';
 
 const authorName = ({ firstName, surname }) => `${firstName} ${surname}`;
@@ -33,5 +35,7 @@ const Book = ({ title, genre, author, publishedOn }) => (
     </Row>
   </Col>
 );
+
+Book.propTypes = bookType;
 
 export default Book;
