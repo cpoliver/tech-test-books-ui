@@ -4,6 +4,7 @@ import { MenuItem, Nav, Navbar, NavDropdown, NavItem } from 'react-bootstrap';
 import { GENRES, GENDERS } from '../../api';
 
 import FilterDropdown from './FilterDropdown';
+import ItemsPerPageDropdown from './ItemsPerPageDropdown';
 
 const createFilter = (key) => (value) => ({
   filter: value === 'all' ? {} : { [key]: { $in: [value] } }
@@ -44,6 +45,10 @@ const Navigation = ({ searchParams, updateSearchParams }) => (
           eventKey={3}
           items={GENDERS}
           createFilter={createFilter('author.gender')}
+          updateSearchParams={updateSearchParams} />
+        <ItemsPerPageDropdown
+          title='Items per Page'
+          eventKey={4}
           updateSearchParams={updateSearchParams} />
       </Nav>
       <Nav pullRight>
