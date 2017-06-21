@@ -9,15 +9,17 @@ function* fetchBookList() {
   try {
     const searchParams = yield select(searchParamsSelector);
 
-    const [booksResponse, totalBooksResponse] = yield all([
+    console.log(searchParams);
+
+    const [booksResponse, totalResponse] = yield all([
       yield call(fetchBooks, searchParams),
       yield call(fetchTotal, searchParams)
     ]);
 
     const books = booksResponse.data;
-    const totalBooks = totalBooksResponse.data.count;
+    const total = totalResponse.data.count;
 
-    yield put({ type: FETCH_BOOKS_COMPLETED, payload: { books, totalBooks } });
+    yield put({ type: FETCH_BOOKS_COMPLETED, payload: { books, total } });
 } catch(error) {
     yield put({ type: FETCH_BOOKS_ERRORED, payload: error });
   }
