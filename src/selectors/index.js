@@ -1,31 +1,35 @@
 import { createSelector } from 'reselect';
-import { any, isNil, join, map, pipe, reject, toPairs } from 'ramda';
+import {
+  any, complement, equals, filter, fromPairs, isEmpty, isNil, join, map, mapObjIndexed, pipe, reject, toPairs
+} from 'ramda';
 
-const objectToQueryString = pipe(toPairs, reject(any(isNil)), map(join('=')), join('&'));
+const stringifyValue = ([k, v]) => ([k, JSON.stringify(v)]);
+const objectToQueryString = pipe(toPairs, reject(any(isNil)), map(pipe(stringifyValue, join('='))), join('&'));
+const formatFilter = (options) => options.length > 0 ? ({ $in: options }) : [];
 
-const createFilter = (key) => (values) => values.length > 0 ? ({ [key]: { $in: values } }) : {};
+export const booksSelector = ({ bookList }) => bookList.books;
+export const isLoadingSelector = ({ bookList }) => bookList.isLoading;
+export const totalBooksSelector = ({ bookList }) => bookList.total;
 
-const createSort = (field, desc = false) => ({
-  sort: { [field]: desc ? -1 : 1 }
-});
+export const searchParamsSelector = ({ search }) => search;
+export const pageParamsSelector = ({ search }) => ({ itemsPerPage: search.itemsPerPage, page: search.page });
+export const activeFilterSelector = ({ search }) => fromPairs(filter(([k, v]) => complement(isEmpty)(v), toPairs(search.filter)));
+export const sortSelector = ({ search }) => ({ [search.sort.property]: search.sort.direction });
 
-const stringifyParams = ({ itemsPerPage, page, sort = {}, filters = {} }) => objectToQueryString({
-  itemsPerPage,
-  page,
-  sort: JSON.stringify(sort), //createSort(sort)
-  filter: JSON.stringify(createFilter('genre')(filters))
-});
+export const filterSelector = createSelector(
+  activeFilterSelector,
+  (activeFilters) => mapObjIndexed(formatFilter, activeFilters)
+);
 
-export const isLoadingSelector = (state) => state.bookList.isLoading;
-
-export const booksSelector = (state) => state.bookList.books;
-export const totalBooksSelector = (state) => state.bookList.total;
-
-export const searchParamsSelector = (state) => state.search;
-export const queryStringSelector = (state) => stringifyParams(state.search);
+export const queryStringSelector = createSelector(
+  pageParamsSelector,
+  filterSelector,
+  sortSelector,
+  ({ itemsPerPage, page }, filter, sort) => objectToQueryString({ itemsPerPage, page , sort, filter })
+);
 
 export const totalPagesSelector = createSelector(
   totalBooksSelector,
-  searchParamsSelector,
+  pageParamsSelector,
   (totalBooks, { itemsPerPage }) => Math.ceil(totalBooks / itemsPerPage)
 );

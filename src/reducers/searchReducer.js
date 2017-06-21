@@ -1,20 +1,26 @@
-import { any, assoc, equals, flip, has, map, merge, when } from 'ramda';
+import { any, assoc, equals, flip, has, map, mergeDeepRight, when } from 'ramda';
 
 import { UPDATED_SEARCH_PARAMS_RECEIVED } from '../actions/types';
 
 const initState = {
   itemsPerPage: 8,
   page: 1,
-  filters: [],
-  sort: {}
+  filter: {
+    genre: [],
+    'author.gender': []
+  },
+  sort: {
+    property: 'title',
+    direction: 1
+  }
 };
 
 const resetPage = assoc('page', 1);
 const hasProps = (props) => (obj) => any(equals(true), map(flip(has)(obj), props));
 
 const updateSearchParams = (state, payload) => {
-  const newParams = when(hasProps(['filters', 'sort', 'itemsPerPage']), resetPage)(payload);
-  return merge(state, newParams);
+  const newParams = when(hasProps(['filter', 'sort', 'itemsPerPage']), resetPage)(payload);
+  return mergeDeepRight(state, newParams);
 };
 
 const searchReducer = (state = initState, action = {}) => {
