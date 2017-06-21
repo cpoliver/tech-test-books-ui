@@ -2,14 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { MenuItem, Nav, Navbar, NavDropdown, NavItem } from 'react-bootstrap';
 
-import FilterDropdown from './FilterDropdown';
 import ItemsPerPageDropdown from './ItemsPerPageDropdown';
-import { GENRES, GENDERS } from '../../lib/constants';
 import { searchParamsType } from '../../lib/types';
-
-const createFilter = (key) => (value) => ({
-  filter: value === 'all' ? {} : { [key]: { $in: [value] } }
-});
 
 const createSort = (field, desc = false) => ({
   sort: { [field]: desc ? -1 : 1 }
@@ -35,18 +29,6 @@ const Navigation = ({ searchParams, updateSearchParams }) => (
             Author Surame
           </MenuItem>
         </NavDropdown>
-        <FilterDropdown
-          title='Genre'
-          eventKey={2}
-          items={GENRES}
-          createFilter={createFilter('genre')}
-          updateSearchParams={updateSearchParams} />
-        <FilterDropdown
-          title='Gender'
-          eventKey={3}
-          items={GENDERS}
-          createFilter={createFilter('author.gender')}
-          updateSearchParams={updateSearchParams} />
         <ItemsPerPageDropdown
           title='Items per Page'
           eventKey={4}
