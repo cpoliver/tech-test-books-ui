@@ -19,3 +19,13 @@ export const GENRES = [
 export const GENDERS_LOWERCASE = GENDERS.map(s => s.toLowerCase());
 
 export const GENRES_LOWERCASE = GENRES.map(s => s.toLowerCase());
+
+export const DAYS_OF_WEEK = [
+  'sunday',
+  'monday',
+  'tuesday',
+  'wednesday',
+  'thursday',
+  'friday',
+  'saturday'
+];
