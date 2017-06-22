@@ -11,7 +11,6 @@ import { rootSaga } from './sagas'
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'react-select/dist/react-select.min.css';
-import './theme/cosmo.min.css';
 import './index.css';
 
 const sagas = createSagaMiddleware()
