@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 import {
-  any, complement, equals, filter, fromPairs, isEmpty, isNil, join, map, mapObjIndexed, pipe, reject, toPairs
+  any, complement, filter, fromPairs, isEmpty, isNil, join, map, mapObjIndexed, pipe, reject, toPairs
 } from 'ramda';
 
 const stringifyValue = ([k, v]) => ([k, JSON.stringify(v)]);

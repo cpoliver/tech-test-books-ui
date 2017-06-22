@@ -22,6 +22,7 @@ const App = ({ isLoading, books, searchParams, totalPages, updateSearchParams })
         </Col>
         <Col xs={12}>
           <FilterMenu
+            property="genre"
             options={GENRES}
             searchParams={searchParams}
             updateSearchParams={updateSearchParams} />

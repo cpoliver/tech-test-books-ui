@@ -1,27 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
-import { assoc, map, prop } from 'ramda';
+import { map, prop } from 'ramda';
 
 const wrapOptions = map((label) => ({
   label, value: label.toLowerCase()
 }));
 
-const formatSearchParams = ({ filters, searchParams }) => {
-  // console.log(filters);
-  return assoc('filters', map(prop('value'), filters), searchParams);
-};
+const unwrapOptions = map(prop('value'));
 
-const FilterMenu = ({ options, searchParams, updateSearchParams }) => {
-  const { filters } = searchParams;
+const formatSearchParams = ({ property, selectedOptions }) => ({
+  filter: { [property]: unwrapOptions(selectedOptions) }
+});
+
+const FilterMenu = ({ property, options, searchParams, updateSearchParams }) => {
+  const selectedOptions = searchParams.filter[property];
 
   return (
     <Select
       name="filter"
-      value={filters}
+      value={selectedOptions}
       multi={true}
       options={wrapOptions(options)}
-      onChange={(filters) => updateSearchParams(formatSearchParams({ filters, searchParams }))} />
+      onChange={(selectedOptions) => updateSearchParams(formatSearchParams({ property, selectedOptions }))} />
   );
 };
 
