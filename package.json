@@ -13,7 +13,8 @@
     "react-select": "^1.0.0-rc.5",
     "redux": "^3.7.0",
     "redux-saga": "^0.15.3",
-    "reselect": "^3.0.1"
+    "reselect": "^3.0.1",
+    "seedrandom": "^2.4.3"
   },
   "devDependencies": {
     "node-sass-chokidar": "^0.0.3",

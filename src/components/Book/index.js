@@ -1,6 +1,7 @@
 import React from 'react';
 import { Col, Image, Row } from 'react-bootstrap';
 import { complement, isEmpty } from 'ramda';
+import seedrandom from 'seedrandom';
 
 import Gender from '../Gender';
 import Offer from '../Offer';
@@ -9,8 +10,8 @@ import { bookType } from '../../lib/types';
 
 import './book.css';
 
-const getIndex = (publishedOn) => new Date(publishedOn).getTime().toString().split('')[3];
-const getCover = ({ genre, publishedOn }) => require(`../../../public/covers/${genre}/${getIndex(publishedOn)}.jpg`);
+const getIndex = (id) => Math.floor(seedrandom(id)() * 10);
+const getCover = ({ genre, _id }) => require(`../../../public/covers/${genre}/${getIndex(_id)}.jpg`);
 
 const Book = (props) => {
   const { title, genre, author, publishedOn } = props;
