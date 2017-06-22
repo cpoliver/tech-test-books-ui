@@ -9,8 +9,6 @@ function* fetchBookList() {
   try {
     const queryString = yield select(queryStringSelector);
 
-    console.log(queryString);
-
     const [booksResponse, totalResponse] = yield all([
       yield call(fetchBooks, queryString),
       yield call(fetchTotal, queryString)
