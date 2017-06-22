@@ -13,11 +13,12 @@ const formatSearchParams = ({ property, selectedOptions }) => ({
   filter: { [property]: unwrapOptions(selectedOptions) }
 });
 
-const FilterMenu = ({ property, options, searchParams, updateSearchParams }) => {
+const FilterMenu = ({ placeholder, property, options, searchParams, updateSearchParams }) => {
   const selectedOptions = searchParams.filter[property];
 
   return (
     <Select
+      placeholder={placeholder}
       name="filter"
       value={selectedOptions}
       multi={true}

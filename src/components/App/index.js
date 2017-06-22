@@ -22,6 +22,7 @@ const App = ({ isLoading, books, searchParams, totalPages, updateSearchParams })
         </Col>
         <Col xs={6}>
           <FilterMenu
+            placeholder="Filter Genres"
             property="genre"
             options={GENRES}
             searchParams={searchParams}
@@ -29,6 +30,7 @@ const App = ({ isLoading, books, searchParams, totalPages, updateSearchParams })
         </Col>
         <Col xs={6}>
           <FilterMenu
+            placeholder="Filter Author Genders"
             property="author.gender"
             options={GENDERS}
             searchParams={searchParams}
