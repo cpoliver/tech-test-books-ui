@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Glyphicon, MenuItem, SplitButton} from 'react-bootstrap';
+import { pipe, replace } from 'ramda';
 
 import { searchParamsType } from '../../lib/types';
 
-const toDisplayName = (option) => option
- .replace('.', ' ')
- .replace(/([a-z]{1})([A-Z]{1})/, '$1 $2');
+const spaceCamelCase = replace(/([a-z]{1})([A-Z]{1})/, '$1 $2');
+const dotToSpace = replace('.', ' ');
+const toDisplayName = pipe(spaceCamelCase, dotToSpace);
 
 const renderMenuItem = (option) => (
   <MenuItem className="capitalize" key={option} eventKey={option}>
@@ -17,7 +18,7 @@ const renderMenuItem = (option) => (
 const renderTitle = ({ property, direction }) => (
   <span>
     {toDisplayName(property)}&nbsp;
-    <Glyphicon glyph={direction > 0 ? 'sort-by-alphabet' : 'sort-by-alphabet'} />
+    <Glyphicon glyph={direction > 0 ? 'sort-by-alphabet' : 'sort-by-alphabet-alt'} />
   </span>
 );
 
@@ -25,17 +26,15 @@ const FilterMenu = ({ options, searchParams, updateSearchParams }) => (
   <SplitButton className="capitalize"
     title={renderTitle(searchParams.sort)}
     id="sort-menu"
+    onClick={() => updateSearchParams({ sort: { direction: -searchParams.sort.direction } })}
     onSelect={(value) => updateSearchParams({ sort: { property: value } })}>
     {options.map(renderMenuItem)}
   </SplitButton>
 );
 
 FilterMenu.propTypes = {
-  options: PropTypes.arrayOf(PropTypes.shape({
-    label: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired
-  })).isRequired,
-  searchParams: searchParamsType,
+  options: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  searchParams: searchParamsType.isRequired,
   updateSearchParams: PropTypes.func.isRequired
 };
 

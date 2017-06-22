@@ -6,11 +6,12 @@ import { Col, Grid, PageHeader, Row } from 'react-bootstrap';
 import Nav from '../Nav';
 import BookList from '../BookList';
 import FilterMenu from '../FilterMenu';
+import ItemsPerPageMenu from '../ItemsPerPageMenu';
 import SortMenu from '../SortMenu';
 import LoadingIndicator from '../LoadingIndicator';
 import { updateSearchParams } from '../../actions';
 import { booksSelector, isLoadingSelector, searchParamsSelector, totalPagesSelector } from '../../selectors';
-import { GENDERS, GENRES, SORTABLE_PROPERTIES } from '../../lib/constants';
+import { ITEMS_PER_PAGE_OPTIONS, GENDERS, GENRES, SORTABLE_PROPERTIES } from '../../lib/constants';
 import { bookShape, searchParamsType } from '../../lib/types';
 
 const App = ({ isLoading, books, searchParams, totalPages, updateSearchParams }) => (
@@ -37,9 +38,15 @@ const App = ({ isLoading, books, searchParams, totalPages, updateSearchParams })
             searchParams={searchParams}
             updateSearchParams={updateSearchParams} />
         </Col>
-        <Col xs={4}>
+        <Col xs={2}>
           <SortMenu
             options={SORTABLE_PROPERTIES}
+            searchParams={searchParams}
+            updateSearchParams={updateSearchParams} />
+        </Col>
+        <Col xs={2}>
+          <ItemsPerPageMenu
+            options={ITEMS_PER_PAGE_OPTIONS}
             searchParams={searchParams}
             updateSearchParams={updateSearchParams} />
         </Col>

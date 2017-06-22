@@ -33,7 +33,7 @@ FilterMenu.propTypes = {
   placeholder: PropTypes.string.isRequired,
   property: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
-  searchParams: searchParamsType,
+  searchParams: searchParamsType.isRequired,
   updateSearchParams: PropTypes.func.isRequired
 };
 
