@@ -22,7 +22,7 @@ const ItemsPerPageMenu = ({ options, searchParams, updateSearchParams }) => (
 );
 
 ItemsPerPageMenu.propTypes = {
-  options: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  options: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
   searchParams: searchParamsType.isRequired,
   updateSearchParams: PropTypes.func.isRequired
 };
