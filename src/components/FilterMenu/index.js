@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Select from 'react-select';
 import { map, prop } from 'ramda';
 
+import { searchParamsType } from '../../lib/types';
+
 const wrapOptions = map((label) => ({
   label, value: label.toLowerCase()
 }));
@@ -28,7 +30,10 @@ const FilterMenu = ({ placeholder, property, options, searchParams, updateSearch
 };
 
 FilterMenu.propTypes = {
+  placeholder: PropTypes.string.isRequired,
+  property: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  searchParams: searchParamsType,
   updateSearchParams: PropTypes.func.isRequired
 };
 
