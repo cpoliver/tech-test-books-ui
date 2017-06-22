@@ -52,7 +52,7 @@ describe('searchReducer', () => {
       }
     };
 
-    it('merge the new params to the state without overwriting the old ones', () => {
+    it('should merge the new params to the state without overwriting the old ones', () => {
       const state = reducer(modifiedState, { type: UPDATED_SEARCH_PARAMS_RECEIVED, payload: newSearchParams });
 
       expect(state).toEqual({

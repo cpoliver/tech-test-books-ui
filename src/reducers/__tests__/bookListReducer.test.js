@@ -43,7 +43,7 @@ describe('bookListReducer', () => {
   describe('when the fetch books complete action is received', () => {
     const action = { type: FETCH_BOOKS_COMPLETED, payload: { books: [1, 2, 3], total: 3 } };
 
-    it('updates books in the state', () => {
+    it('sets books, isLoading in the state', () => {
       const state = reducer(initState, action);
 
       expect(state).toEqual({
@@ -53,18 +53,12 @@ describe('bookListReducer', () => {
         error: {}
       });
     });
-
-    it('sets isLoading state back to false', () => {
-      const state = reducer(loadingState, action);
-
-      expect(state.isLoading).toEqual(false);
-    });
   });
 
   describe('when the fetch books errored action is received', () => {
     const action = { type: FETCH_BOOKS_ERRORED, payload: { message: 'some error' } };
 
-    it('updates error in the state', () => {
+    it('sets error, isLoading in the state', () => {
       const state = reducer(initState, action);
 
       expect(state).toEqual({
@@ -73,12 +67,6 @@ describe('bookListReducer', () => {
         books: [],
         error: { message: 'some error' }
       });
-    });
-
-    it('sets isLoading state back to false', () => {
-      const state = reducer(loadingState, action);
-
-      expect(state.isLoading).toEqual(false);
     });
   });
 });
