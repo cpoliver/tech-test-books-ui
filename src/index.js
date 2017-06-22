@@ -11,6 +11,7 @@ import { rootSaga } from './sagas'
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'react-select/dist/react-select.min.css';
+import 'rc-slider/assets/index.css';
 import './index.css';
 
 const sagas = createSagaMiddleware()

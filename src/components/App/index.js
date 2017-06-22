@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Col, Grid, PageHeader, Row } from 'react-bootstrap';
 
+import AdminModal from '../AdminModal';
 import BookList from '../BookList';
 import FilterMenu from '../FilterMenu';
 import ItemsPerPageMenu from '../ItemsPerPageMenu';
@@ -14,6 +15,7 @@ import { ITEMS_PER_PAGE_OPTIONS, GENDERS, GENRES, SORTABLE_PROPERTIES } from '..
 import { bookShape, searchParamsType } from '../../lib/types';
 
 const App = ({ isLoading, books, searchParams, totalPages, updateSearchParams }) => (
+  <div>
   <Grid>
     <Row>
       <Col xs={12}>
@@ -57,6 +59,8 @@ const App = ({ isLoading, books, searchParams, totalPages, updateSearchParams })
     </Row>
     <LoadingIndicator isLoading={isLoading} />
   </Grid>
+  <AdminModal />
+  </div>
 );
 
 App.propTypes = {

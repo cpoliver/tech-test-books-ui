@@ -9,7 +9,8 @@ import {
   filterSelector,
   sortSelector,
   queryStringSelector,
-  totalPagesSelector
+  totalPagesSelector,
+  adminModalSelector
 } from '../';
 
 const state = {
@@ -34,6 +35,10 @@ const state = {
       property: 'title',
       direction: -1
     }
+  },
+  admin: {
+    showModal: true,
+    totalToAdd: 100000
   }
 };
 
@@ -134,6 +139,16 @@ describe('selectors', () => {
   describe('totalPagesSelector', () => {
     it('should return the total page count', () => {
       expect(totalPagesSelector(state)).toEqual(11);
+    });
+  });
+
+  describe('adminModalSelector', () => {
+    it('should return the admin modal state', () => {
+      expect(adminModalSelector(state)).toEqual({
+        totalBooks: 81,
+        totalToAdd: 100000,
+        showModal: true
+      });
     });
   });
 });
