@@ -1,17 +1,10 @@
 import { createSelector } from 'reselect';
-import {
-  any, complement, filter, fromPairs, isEmpty, isNil, join, map, mapObjIndexed, pipe, reject, toPairs
-} from 'ramda';
+import { any, complement, filter, fromPairs, isEmpty, isNil,
+         join, map, mapObjIndexed, pipe, reject, toPairs } from 'ramda';
 
 const stringifyValue = ([k, v]) => ([k, JSON.stringify(v)]);
 const objectToQueryString = pipe(toPairs, reject(any(isNil)), map(pipe(stringifyValue, join('='))), join('&'));
 const formatFilter = (options) => options.length > 0 ? ({ $in: options }) : [];
-
-export const adminModalSelector = ({ bookList, admin }) => ({
-  totalBooks: bookList.total,
-  totalToAdd: admin.totalToAdd,
-  showModal: admin.showModal
-})
 
 export const booksSelector = ({ bookList }) => bookList.books;
 export const isLoadingSelector = ({ bookList }) => bookList.isLoading;
@@ -38,4 +31,12 @@ export const totalPagesSelector = createSelector(
   totalBooksSelector,
   pageParamsSelector,
   (totalBooks, { itemsPerPage }) => Math.ceil(totalBooks / itemsPerPage)
+);
+
+const adminSelector = ({ admin }) => admin;
+
+export const adminModalSelector = createSelector(
+  totalBooksSelector,
+  adminSelector,
+  (totalBooks, admin) => ({ ...admin, totalBooks })
 );

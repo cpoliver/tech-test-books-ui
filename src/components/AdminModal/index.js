@@ -4,14 +4,16 @@ import Slider from 'rc-slider';
 import { Button, Col, Modal, Row } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
+import { updateAdminState } from '../../actions';
+import { ADD_BOOKS, DELETE_ALL_BOOKS } from '../../actions/types';
 import { adminModalSelector } from '../../selectors';
 import './admin-modal.css';
 
-const AdminModal = ({ adminModal, addBooks, deleteAllBooks, setVisibility, updateTotalToAdd }) => {
+const AdminModal = ({ adminModal, addBooks, deleteAllBooks, updateAdminState }) => {
   const { totalBooks, totalToAdd, showModal } = adminModal;
 
   return (
-    <Modal backdrop={true} show={true} className="admin-modal">
+    <Modal backdrop={true} show={showModal} className="admin-modal">
       <Modal.Header>
         <Modal.Title>Admin Panel</Modal.Title>
       </Modal.Header>
@@ -29,13 +31,14 @@ const AdminModal = ({ adminModal, addBooks, deleteAllBooks, setVisibility, updat
         <Row>
           <Col xsOffset={1} xs={10}>
             <Slider
-              onChange={updateTotalToAdd}
+              value={totalToAdd}
+              onChange={(value) => updateAdminState({ totalToAdd: value })}
               marks={{2: '100', 3: '1k', 4: '10k', 5: '100k', 6: '1m'}}
               step={null}
               min={2}
               max={6} />
           </Col>
-          <Col xs={12}>
+          <Col xs={12} sm={8} smOffset={2} md={6} mdOffset={3}>
             <Button bsStyle="success" onClick={addBooks} className="add-button" block>
               Create Books
             </Button>
@@ -44,9 +47,9 @@ const AdminModal = ({ adminModal, addBooks, deleteAllBooks, setVisibility, updat
         <hr />
         <Row>
           <Col xs={12} className="text-center">
-            There are {12000 || totalBooks} books in the database
+            There are {totalBooks} books in the database
           </Col>
-          <Col xs={12}>
+          <Col xs={12} sm={8} smOffset={2} md={6} mdOffset={3}>
             <Button bsStyle="danger" onClick={deleteAllBooks} className="delete-button" block>
               Delete All Books
             </Button>
@@ -55,7 +58,7 @@ const AdminModal = ({ adminModal, addBooks, deleteAllBooks, setVisibility, updat
       </Modal.Body>
 
       <Modal.Footer>
-        <Button onClick={() => setVisibility(false)} >Done</Button>
+        <Button onClick={() => updateAdminState({ showModal: false })} >Done</Button>
       </Modal.Footer>
     </Modal>
   );
@@ -63,25 +66,23 @@ const AdminModal = ({ adminModal, addBooks, deleteAllBooks, setVisibility, updat
 
 AdminModal.propTypes = {
   adminModal: PropTypes.shape({
-    totalBooks: PropTypes.func.isRequired,
-    totalToAdd: PropTypes.func.isRequired,
+    totalBooks: PropTypes.number.isRequired,
+    totalToAdd: PropTypes.number.isRequired,
     showModal: PropTypes.bool.isRequired
   }),
   addBooks: PropTypes.func.isRequired,
   deleteAllBooks: PropTypes.func.isRequired,
-  setVisibility: PropTypes.func.isRequired,
-  updateTotalToAdd: PropTypes.func.isRequired
+  updateAdminState: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state) => ({
   adminModal: adminModalSelector(state)
-};
+});
 
 const mapDispatchToProps = (dispatch) => ({
-  addBooks: () => console.log('addBooks'),
-  deleteAllBooks: () => console.log('deleteAllBooks'),
-  setVisibility: () => console.log('setVisibility'),
-  updateTotalToAdd: console.log
+  addBooks: () => dispatch({ type: ADD_BOOKS }),
+  deleteAllBooks: () => dispatch({ type: DELETE_ALL_BOOKS }),
+  updateAdminState: (newAdminState) => dispatch(updateAdminState(newAdminState))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminModal);

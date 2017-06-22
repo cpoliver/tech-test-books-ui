@@ -38,7 +38,7 @@ const state = {
   },
   admin: {
     showModal: true,
-    totalToAdd: 100000
+    totalToAdd: 5
   }
 };
 
@@ -146,7 +146,7 @@ describe('selectors', () => {
     it('should return the admin modal state', () => {
       expect(adminModalSelector(state)).toEqual({
         totalBooks: 81,
-        totalToAdd: 100000,
+        totalToAdd: 5,
         showModal: true
       });
     });
