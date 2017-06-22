@@ -9,7 +9,7 @@ import FilterMenu from '../FilterMenu';
 import LoadingIndicator from '../LoadingIndicator';
 import { updateSearchParams } from '../../actions';
 import { booksSelector, isLoadingSelector, searchParamsSelector, totalPagesSelector } from '../../selectors';
-import { GENRES } from '../../lib/constants';
+import { GENDERS, GENRES } from '../../lib/constants';
 import { bookShape, searchParamsType } from '../../lib/types';
 
 const App = ({ isLoading, books, searchParams, totalPages, updateSearchParams }) => (
@@ -20,10 +20,17 @@ const App = ({ isLoading, books, searchParams, totalPages, updateSearchParams })
         <Col xs={12}>
           <PageHeader>Books List</PageHeader>
         </Col>
-        <Col xs={12}>
+        <Col xs={6}>
           <FilterMenu
             property="genre"
             options={GENRES}
+            searchParams={searchParams}
+            updateSearchParams={updateSearchParams} />
+        </Col>
+        <Col xs={6}>
+          <FilterMenu
+            property="author.gender"
+            options={GENDERS}
             searchParams={searchParams}
             updateSearchParams={updateSearchParams} />
         </Col>
