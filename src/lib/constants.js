@@ -28,3 +28,11 @@ export const DAYS_OF_WEEK = [
   'friday',
   'saturday'
 ];
+
+export const SORTABLE_PROPERTIES = [
+  'author.gender',
+  'author.firstName',
+  'author.surname',
+  'genre',
+  'publishedOn'
+];

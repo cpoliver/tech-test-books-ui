@@ -6,10 +6,11 @@ import { Col, Grid, PageHeader, Row } from 'react-bootstrap';
 import Nav from '../Nav';
 import BookList from '../BookList';
 import FilterMenu from '../FilterMenu';
+import SortMenu from '../SortMenu';
 import LoadingIndicator from '../LoadingIndicator';
 import { updateSearchParams } from '../../actions';
 import { booksSelector, isLoadingSelector, searchParamsSelector, totalPagesSelector } from '../../selectors';
-import { GENDERS, GENRES } from '../../lib/constants';
+import { GENDERS, GENRES, SORTABLE_PROPERTIES } from '../../lib/constants';
 import { bookShape, searchParamsType } from '../../lib/types';
 
 const App = ({ isLoading, books, searchParams, totalPages, updateSearchParams }) => (
@@ -20,7 +21,7 @@ const App = ({ isLoading, books, searchParams, totalPages, updateSearchParams })
         <Col xs={12}>
           <PageHeader>Books List</PageHeader>
         </Col>
-        <Col xs={6}>
+        <Col xs={4}>
           <FilterMenu
             placeholder="Filter Genres"
             property="genre"
@@ -28,11 +29,17 @@ const App = ({ isLoading, books, searchParams, totalPages, updateSearchParams })
             searchParams={searchParams}
             updateSearchParams={updateSearchParams} />
         </Col>
-        <Col xs={6}>
+        <Col xs={4}>
           <FilterMenu
             placeholder="Filter Author Genders"
             property="author.gender"
             options={GENDERS}
+            searchParams={searchParams}
+            updateSearchParams={updateSearchParams} />
+        </Col>
+        <Col xs={4}>
+          <SortMenu
+            options={SORTABLE_PROPERTIES}
             searchParams={searchParams}
             updateSearchParams={updateSearchParams} />
         </Col>
