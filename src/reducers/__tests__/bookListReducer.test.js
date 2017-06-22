@@ -4,11 +4,13 @@ import reducer from '../bookListReducer';
 import { FETCH_BOOKS, FETCH_BOOKS_COMPLETED, FETCH_BOOKS_ERRORED } from '../../actions/types';
 
 const initState = {
-  isLoading: false,
+  isLoading: true,
   total: 0,
   books: [],
   error: {}
 };
+
+const notLoadingState = assoc('isLoading', false, initState);
 
 const loadingState = assoc('isLoading', true, initState);
 
@@ -27,21 +29,29 @@ describe('bookListReducer', () => {
 
   describe('when the fetch books action is received', () => {
     it('sets isLoading state to true', () => {
-      const expectedState = assoc('isLoading', true, initState);
-      const state = reducer(initState, { type: FETCH_BOOKS });
+      const state = reducer(notLoadingState, { type: FETCH_BOOKS });
 
-      expect(state).toEqual(expectedState);
+      expect(state).toEqual({
+        isLoading: true,
+        total: 0,
+        books: [],
+        error: {}
+      });
     });
   });
 
   describe('when the fetch books complete action is received', () => {
-    const action = { type: FETCH_BOOKS_COMPLETED, payload: { books: [1, 2, 3] } };
+    const action = { type: FETCH_BOOKS_COMPLETED, payload: { books: [1, 2, 3], total: 3 } };
 
     it('updates books in the state', () => {
-      const expectedState = assoc('books', action.payload.books, initState);
       const state = reducer(initState, action);
 
-      expect(state).toEqual(expectedState);
+      expect(state).toEqual({
+        isLoading: false,
+        total: 3,
+        books: [1, 2, 3],
+        error: {}
+      });
     });
 
     it('sets isLoading state back to false', () => {
@@ -55,10 +65,14 @@ describe('bookListReducer', () => {
     const action = { type: FETCH_BOOKS_ERRORED, payload: { message: 'some error' } };
 
     it('updates error in the state', () => {
-      const expectedState = assoc('error', action.payload, initState);
       const state = reducer(initState, action);
 
-      expect(state).toEqual(expectedState);
+      expect(state).toEqual({
+        isLoading: false,
+        total: 0,
+        books: [],
+        error: { message: 'some error' }
+      });
     });
 
     it('sets isLoading state back to false', () => {

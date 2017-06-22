@@ -3,7 +3,7 @@ import { merge } from 'ramda';
 import { FETCH_BOOKS, FETCH_BOOKS_COMPLETED, FETCH_BOOKS_ERRORED } from '../actions/types';
 
 const initState = {
-  isLoading: false,
+  isLoading: true,
   total: 0,
   books: [],
   error: {}
