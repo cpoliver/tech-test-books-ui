@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Col, Grid, PageHeader, Row } from 'react-bootstrap';
 
-import Nav from '../Nav';
 import BookList from '../BookList';
 import FilterMenu from '../FilterMenu';
 import ItemsPerPageMenu from '../ItemsPerPageMenu';
@@ -15,52 +14,49 @@ import { ITEMS_PER_PAGE_OPTIONS, GENDERS, GENRES, SORTABLE_PROPERTIES } from '..
 import { bookShape, searchParamsType } from '../../lib/types';
 
 const App = ({ isLoading, books, searchParams, totalPages, updateSearchParams }) => (
-  <div>
-    <Nav searchParams={searchParams} updateSearchParams={updateSearchParams} />
-    <Grid>
-      <Row>
-        <Col xs={12}>
-          <PageHeader>Books List</PageHeader>
-        </Col>
-        <Col xs={4}>
-          <FilterMenu
-            placeholder="Filter Genres"
-            property="genre"
-            options={GENRES}
-            searchParams={searchParams}
-            updateSearchParams={updateSearchParams} />
-        </Col>
-        <Col xs={4}>
-          <FilterMenu
-            placeholder="Filter Author Genders"
-            property="author.gender"
-            options={GENDERS}
-            searchParams={searchParams}
-            updateSearchParams={updateSearchParams} />
-        </Col>
-        <Col xs={2}>
-          <SortMenu
-            options={SORTABLE_PROPERTIES}
-            searchParams={searchParams}
-            updateSearchParams={updateSearchParams} />
-        </Col>
-        <Col xs={2}>
-          <ItemsPerPageMenu
-            options={ITEMS_PER_PAGE_OPTIONS}
-            searchParams={searchParams}
-            updateSearchParams={updateSearchParams} />
-        </Col>
-      </Row>
-      <Row>
-        <BookList
-          books={books}
+  <Grid>
+    <Row>
+      <Col xs={12}>
+        <PageHeader>Books List</PageHeader>
+      </Col>
+      <Col xs={4}>
+        <FilterMenu
+          placeholder="Filter Genres"
+          property="genre"
+          options={GENRES}
           searchParams={searchParams}
-          totalPages={totalPages}
           updateSearchParams={updateSearchParams} />
-      </Row>
-    </Grid>
+      </Col>
+      <Col xs={4}>
+        <FilterMenu
+          placeholder="Filter Author Genders"
+          property="author.gender"
+          options={GENDERS}
+          searchParams={searchParams}
+          updateSearchParams={updateSearchParams} />
+      </Col>
+      <Col xs={2}>
+        <SortMenu
+          options={SORTABLE_PROPERTIES}
+          searchParams={searchParams}
+          updateSearchParams={updateSearchParams} />
+      </Col>
+      <Col xs={2}>
+        <ItemsPerPageMenu
+          options={ITEMS_PER_PAGE_OPTIONS}
+          searchParams={searchParams}
+          updateSearchParams={updateSearchParams} />
+      </Col>
+    </Row>
+    <Row>
+      <BookList
+        books={books}
+        searchParams={searchParams}
+        totalPages={totalPages}
+        updateSearchParams={updateSearchParams} />
+    </Row>
     <LoadingIndicator isLoading={isLoading} />
-  </div>
+  </Grid>
 );
 
 App.propTypes = {
