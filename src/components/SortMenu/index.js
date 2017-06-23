@@ -4,6 +4,7 @@ import { Glyphicon, MenuItem, SplitButton} from 'react-bootstrap';
 import { pipe, replace } from 'ramda';
 
 import { searchParamsType } from '../../lib/types';
+import './sort-menu.css';
 
 const spaceCamelCase = replace(/([a-z]{1})([A-Z]{1})/, '$1 $2');
 const dotToSpace = replace('.', ' ');
@@ -22,20 +23,23 @@ const renderTitle = ({ property, direction }) => (
   </span>
 );
 
-const FilterMenu = ({ options, searchParams, updateSearchParams }) => (
-  <SplitButton className="capitalize"
-    title={renderTitle(searchParams.sort)}
-    id="sort-menu"
-    onClick={() => updateSearchParams({ sort: { direction: -searchParams.sort.direction } })}
-    onSelect={(value) => updateSearchParams({ sort: { property: value } })}>
-    {options.map(renderMenuItem)}
-  </SplitButton>
+const SortMenu = ({ options, searchParams, updateSearchParams }) => (
+  <div className="sort-menu">
+    <SplitButton
+      className="capitalize"
+      title={renderTitle(searchParams.sort)}
+      id="sort-menu"
+      onClick={() => updateSearchParams({ sort: { direction: -searchParams.sort.direction } })}
+      onSelect={(value) => updateSearchParams({ sort: { property: value } })}>
+      {options.map(renderMenuItem)}
+    </SplitButton>
+  </div>
 );
 
-FilterMenu.propTypes = {
+SortMenu.propTypes = {
   options: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   searchParams: searchParamsType.isRequired,
   updateSearchParams: PropTypes.func.isRequired
 };
 
-export default FilterMenu;
+export default SortMenu;

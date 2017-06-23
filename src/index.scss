@@ -27,3 +27,17 @@ h1 {
     padding: 1rem;
   }
 }
+
+.Select {
+  margin-bottom: 1rem;
+}
+
+.filter-bar {
+  >div:last-child {
+    padding-left: 0;
+
+    .dropdown-menu {
+      width: 100%;
+    }
+  }
+}

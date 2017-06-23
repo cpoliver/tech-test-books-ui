@@ -1,0 +1,14 @@
+.sort-menu {
+  .dropdown {
+    display: flex;
+
+    >button:first-of-type {
+      flex: 1;
+      text-align: left;
+    }
+
+    .dropdown-menu {
+      width: 100%;
+    }
+  }
+}

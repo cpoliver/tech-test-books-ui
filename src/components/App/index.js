@@ -15,13 +15,12 @@ import { ITEMS_PER_PAGE_OPTIONS, GENDERS, GENRES, SORTABLE_PROPERTIES } from '..
 import { bookShape, searchParamsType } from '../../lib/types';
 
 const App = ({ isLoading, books, searchParams, totalPages, updateSearchParams }) => (
-  <div>
   <Grid>
-    <Row>
-      <Col xs={12}>
+    <Row className="filter-bar">
+      <Col xs={12} md={12}>
         <PageHeader>Books List</PageHeader>
       </Col>
-      <Col xs={4}>
+      <Col xs={12} md={6}>
         <FilterMenu
           placeholder="Filter Genres"
           property="genre"
@@ -29,7 +28,7 @@ const App = ({ isLoading, books, searchParams, totalPages, updateSearchParams })
           searchParams={searchParams}
           updateSearchParams={updateSearchParams} />
       </Col>
-      <Col xs={4}>
+      <Col xs={12} md={3}>
         <FilterMenu
           placeholder="Filter Author Genders"
           property="author.gender"
@@ -37,13 +36,13 @@ const App = ({ isLoading, books, searchParams, totalPages, updateSearchParams })
           searchParams={searchParams}
           updateSearchParams={updateSearchParams} />
       </Col>
-      <Col xs={2}>
+      <Col xs={8} md={2}>
         <SortMenu
           options={SORTABLE_PROPERTIES}
           searchParams={searchParams}
           updateSearchParams={updateSearchParams} />
       </Col>
-      <Col xs={2}>
+      <Col xs={4} md={1}>
         <ItemsPerPageMenu
           options={ITEMS_PER_PAGE_OPTIONS}
           searchParams={searchParams}
@@ -58,9 +57,8 @@ const App = ({ isLoading, books, searchParams, totalPages, updateSearchParams })
         updateSearchParams={updateSearchParams} />
     </Row>
     <LoadingIndicator isLoading={isLoading} />
+    <AdminModal />
   </Grid>
-  <AdminModal />
-  </div>
 );
 
 App.propTypes = {
