@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Col, Grid, PageHeader, Row } from 'react-bootstrap';
+import { Button, Col, Grid, PageHeader, Row } from 'react-bootstrap';
 
 import AdminModal from '../AdminModal';
 import BookList from '../BookList';
@@ -9,16 +9,23 @@ import FilterMenu from '../FilterMenu';
 import ItemsPerPageMenu from '../ItemsPerPageMenu';
 import SortMenu from '../SortMenu';
 import LoadingIndicator from '../LoadingIndicator';
-import { updateSearchParams } from '../../actions';
+import { updateAdminState, updateSearchParams } from '../../actions';
 import { booksSelector, isLoadingSelector, searchParamsSelector, totalPagesSelector } from '../../selectors';
 import { ITEMS_PER_PAGE_OPTIONS, GENDERS, GENRES, SORTABLE_PROPERTIES } from '../../lib/constants';
 import { bookShape, searchParamsType } from '../../lib/types';
 
-const App = ({ isLoading, books, searchParams, totalPages, updateSearchParams }) => (
+const showAdminModal = (updateAdminState) => () => updateAdminState({ showModal: true });
+
+const App = ({ isLoading, books, searchParams, totalPages, updateAdminState, updateSearchParams }) => (
   <Grid>
     <Row className="filter-bar">
       <Col xs={12} md={12}>
-        <PageHeader>Books List</PageHeader>
+        <PageHeader>
+          Books List
+          <Button onClick={showAdminModal(updateAdminState)} className="pull-right">
+            Show Admin Panel
+          </Button>
+        </PageHeader>
       </Col>
       <Col xs={12} md={6}>
         <FilterMenu
@@ -57,7 +64,7 @@ const App = ({ isLoading, books, searchParams, totalPages, updateSearchParams })
         updateSearchParams={updateSearchParams} />
     </Row>
     <LoadingIndicator isLoading={isLoading} />
-    <AdminModal />
+    <AdminModal updateAdminState={updateAdminState} />
   </Grid>
 );
 
@@ -66,6 +73,7 @@ App.propTypes = {
   books: PropTypes.arrayOf(bookShape).isRequired,
   searchParams: searchParamsType.isRequired,
   totalPages: PropTypes.number.isRequired,
+  updateAdminState: PropTypes.func.isRequired,
   updateSearchParams: PropTypes.func.isRequired
 };
 
@@ -77,7 +85,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  updateAdminState: (adminState) => dispatch(updateAdminState(adminState)),
   updateSearchParams: (searchParams) => dispatch(updateSearchParams(searchParams))
-})
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
