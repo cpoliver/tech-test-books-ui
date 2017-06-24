@@ -9,6 +9,14 @@ import { ADD_BOOKS, DELETE_ALL_BOOKS } from '../../actions/types';
 import { adminModalSelector } from '../../selectors';
 import './admin-modal.css';
 
+const messages = [
+  'An impressive bookshelf',
+  'A small school library',
+  'A medium-sized university library',
+  'A large metropolitan library',
+  'A huge national library'
+];
+
 const AdminModal = ({ adminModal, addBooks, deleteAllBooks, updateAdminState }) => {
   const { totalBooks, totalToAdd, showModal } = adminModal;
 
@@ -20,12 +28,7 @@ const AdminModal = ({ adminModal, addBooks, deleteAllBooks, updateAdminState }) 
       <Modal.Body>
         <Row>
           <Col xs={12} className="text-center">
-            {false && <h3>An impressive bookshelf</h3>}
-            {false && <h3>A small school library</h3>}
-            {false && <h3>A medium university library</h3>}
-            {false && <h3>A large metropolitan library</h3>}
-            <h3>A huge national library</h3>
-            <small>*or the amount of programming books I have purchased and have not got around to reading yet</small>
+            <h3>{messages[totalToAdd-2]}</h3>
           </Col>
         </Row>
         <Row>
