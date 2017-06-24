@@ -10,7 +10,8 @@ import {
   sortSelector,
   queryStringSelector,
   totalPagesSelector,
-  adminModalSelector
+  adminModalSelector,
+  totalToAddSelector
 } from '../';
 
 const state = {
@@ -149,6 +150,12 @@ describe('selectors', () => {
         totalToAdd: 5,
         showModal: true
       });
+    });
+  });
+
+  describe('totalToAddSelector', () => {
+    it('should return the number of items to add', () => {
+      expect(totalToAddSelector(state)).toEqual(100000);
     });
   });
 });

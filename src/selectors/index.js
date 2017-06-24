@@ -35,6 +35,8 @@ export const totalPagesSelector = createSelector(
 
 const adminSelector = ({ admin }) => admin;
 
+export const totalToAddSelector = ({ admin }) => Math.pow(10, admin.totalToAdd);
+
 export const adminModalSelector = createSelector(
   totalBooksSelector,
   adminSelector,
