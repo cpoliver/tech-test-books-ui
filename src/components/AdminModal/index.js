@@ -4,6 +4,7 @@ import Slider from 'rc-slider';
 import { Button, Col, Modal, Row } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
+import LoadingIndicator from '../LoadingIndicator';
 import { updateAdminState } from '../../actions';
 import { ADD_BOOKS, DELETE_ALL_BOOKS } from '../../actions/types';
 import { adminModalSelector } from '../../selectors';
@@ -18,7 +19,7 @@ const messages = [
 ];
 
 const AdminModal = ({ adminModal, addBooks, deleteAllBooks, updateAdminState }) => {
-  const { totalBooks, totalToAdd, showModal } = adminModal;
+  const { isLoading, totalBooks, totalToAdd, showModal } = adminModal;
 
   return (
     <Modal backdrop={true} show={showModal} className="admin-modal">
@@ -26,6 +27,7 @@ const AdminModal = ({ adminModal, addBooks, deleteAllBooks, updateAdminState }) 
         <Modal.Title>Admin Panel</Modal.Title>
       </Modal.Header>
       <Modal.Body>
+        <LoadingIndicator isLoading={isLoading} />
         <Row>
           <Col xs={12} className="text-center">
             <h3>{messages[totalToAdd-2]}</h3>
@@ -42,7 +44,7 @@ const AdminModal = ({ adminModal, addBooks, deleteAllBooks, updateAdminState }) 
               max={6} />
           </Col>
           <Col xs={12} sm={8} smOffset={2} md={6} mdOffset={3}>
-            <Button bsStyle="success" onClick={addBooks} className="add-button" block>
+            <Button bsStyle="success" onClick={addBooks} className="add-button" disabled={isLoading} block>
               Create Books
             </Button>
           </Col>
@@ -53,13 +55,12 @@ const AdminModal = ({ adminModal, addBooks, deleteAllBooks, updateAdminState }) 
             There are {totalBooks} books in the database
           </Col>
           <Col xs={12} sm={8} smOffset={2} md={6} mdOffset={3}>
-            <Button bsStyle="danger" onClick={deleteAllBooks} className="delete-button" block>
+            <Button bsStyle="danger" onClick={deleteAllBooks} className="delete-button" disabled={isLoading} block>
               Delete All Books
             </Button>
           </Col>
         </Row>
       </Modal.Body>
-
       <Modal.Footer>
         <Button onClick={() => updateAdminState({ showModal: false })} >Done</Button>
       </Modal.Footer>
