@@ -8,7 +8,7 @@ import {
 
 const initState = {
   isLoading: false,
-  showModal: true,
+  showModal: false,
   totalToAdd: 4,
   error: {}
 };
