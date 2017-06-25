@@ -4,15 +4,43 @@
   background: $silk;
   padding-top: 1rem;
 
+  >div:last-child {
+    .dropdown-menu {
+      width: 100%;
+    }
+  }
+
   .sort-menu {
     padding-bottom: 1rem;
   }
 
-  >div:last-child {
-    padding-left: 0;
+  // Override rc-select
+  .Select {
+    margin-bottom: 1rem;
 
-    .dropdown-menu {
-      width: 100%;
+    .Select-multi-value-wrapper {
+      margin: 1px;
+    }
+
+    .Select-menu-outer {
+      background: $silk;
+      color: $charcoal;
+    }
+
+    .Select-input {
+      outline: none;
+    }
+
+    .Select-control {
+      border: 0;
+      border-radius: 0;
+
+      .Select-value {
+        background: $paper;
+        border: 1px solid $silk;
+        border-radius: 0;
+        color: $charcoal;
+      }
     }
   }
 }

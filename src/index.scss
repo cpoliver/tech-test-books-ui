@@ -2,6 +2,7 @@
 @import 'fonts/fonts.css';
 
 body, h1, h2, h3, h4, h5, h6 {
+  color: $charcoal;
   font-family: 'Circular-Pro-Medium';
 }
 
@@ -40,16 +41,21 @@ body {
   border-radius: 0;
   margin: 0;
 
-  &>li>a {
-    padding: 1rem;
+  li {
+    a {
+      color: $charcoal;
+      padding: 1rem;
+    }
+
+    &:hover {
+      a {
+        background: $silk;
+        color: $charcoal;
+      }
+    }
   }
 }
 
-// Override rc-select
-.Select {
-  margin-bottom: 1rem;
-
-  .Select-control {
-    border-radius: 0;
-  }
+.modal-content {
+  border-radius: 0;
 }
