@@ -7,6 +7,7 @@ import AdminModal from '../AdminModal';
 import ErrorModal from '../ErrorModal';
 import BookList from '../BookList';
 import FilterBar from '../FilterBar';
+import Footer from '../Footer';
 import Header from '../Header';
 import LoadingIndicator from '../LoadingIndicator';
 import { updateAdminState, updateSearchParams } from '../../actions';
@@ -14,20 +15,22 @@ import { booksSelector, isLoadingSelector, searchParamsSelector, totalPagesSelec
 import { bookShape, searchParamsType } from '../../lib/types';
 
 const App = ({ isLoading, books, searchParams, totalPages, updateAdminState, updateSearchParams }) => (
-  <Grid fluid={true}>
-    <Header updateAdminState={updateAdminState} />
-    <FilterBar
-      searchParams={searchParams}
-      updateSearchParams={updateSearchParams} />
-    <BookList
-      books={books}
-      searchParams={searchParams}
-      totalPages={totalPages}
-      updateSearchParams={updateSearchParams} />
+  <div>
     <LoadingIndicator isLoading={isLoading} />
     <AdminModal />
     <ErrorModal />
-  </Grid>
+    <Grid fluid={true}>
+      <Header updateAdminState={updateAdminState} />
+      <FilterBar
+        searchParams={searchParams}
+        updateSearchParams={updateSearchParams} />
+      <BookList books={books} />
+    </Grid>
+    <Footer
+      searchParams={searchParams}
+      totalPages={totalPages}
+      updateSearchParams={updateSearchParams} />
+  </div>
 );
 
 App.propTypes = {

@@ -1,0 +1,48 @@
+@import '../../colors';
+
+
+.footer {
+  background: $charcoal;
+  margin-top: 1rem;
+
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
+  ul.pagination {
+    cursor: pointer;
+
+    li.active a {
+      background: none;
+      color: $charcoal;
+
+      &:hover {
+        background: none;
+      }
+    }
+
+    li.disabled a {
+      background: none;
+      color: $pale-gold;
+      opacity: 0.25;
+
+      &:hover {
+        background: none;
+      }
+    }
+
+    a {
+      background: none;
+      border: none;
+      border-radius: 3rem;
+      color: $pale-gold;
+      font-size: 1.5rem;
+      margin: 0.5rem;
+
+      &:hover {
+        background: none;
+        color: $silk;
+      }
+    }
+  }
+}

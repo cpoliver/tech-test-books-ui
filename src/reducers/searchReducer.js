@@ -3,7 +3,7 @@ import { any, assoc, equals, flip, has, map, mergeDeepRight, when } from 'ramda'
 import { UPDATED_SEARCH_PARAMS_RECEIVED } from '../actions/types';
 
 const initState = {
-  itemsPerPage: 8,
+  itemsPerPage: 16,
   page: 1,
   filter: {
     genre: [],

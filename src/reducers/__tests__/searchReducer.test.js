@@ -23,7 +23,7 @@ describe('searchReducer', () => {
     const state = reducer();
 
     expect(state).toEqual({
-      itemsPerPage: 8,
+      itemsPerPage: 16,
       page: 1,
       filter: {
         genre: [],

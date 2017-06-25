@@ -5,8 +5,24 @@ body, h1, h2, h3, h4, h5, h6 {
   font-family: 'Circular-Pro-Medium';
 }
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 8rem;
+}
+
 .capitalize {
   text-transform: capitalize;
+}
+
+// Fix footer to bottom of page, not viewport
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 // Override Bootstrap
