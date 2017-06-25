@@ -1,0 +1,18 @@
+@import '../../colors';
+
+.filter-bar {
+  background: $silk;
+  padding-top: 1rem;
+
+  .sort-menu {
+    padding-bottom: 1rem;
+  }
+
+  >div:last-child {
+    padding-left: 0;
+
+    .dropdown-menu {
+      width: 100%;
+    }
+  }
+}

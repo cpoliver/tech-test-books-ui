@@ -1,27 +1,15 @@
+@import 'colors';
 @import 'fonts/fonts.css';
 
-$pale-gold: #c0b283;
-$silk: #dcd0c0;
-$paper: #f4f4f4;
-$charcoal: #373737;
-
-body {
+body, h1, h2, h3, h4, h5, h6 {
   font-family: 'Circular-Pro-Medium';
-}
-
-h1 {
-  font-size: 2.5rem;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Circular-Pro-Black';
 }
 
 .capitalize {
   text-transform: capitalize;
 }
 
-// Override Bootstrap and rc-select
+// Override Bootstrap
 .btn {
   border-radius: 0;
 }
@@ -41,20 +29,11 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+// Override rc-select
 .Select {
   margin-bottom: 1rem;
 
   .Select-control {
     border-radius: 0;
-  }
-}
-
-.filter-bar {
-  >div:last-child {
-    padding-left: 0;
-
-    .dropdown-menu {
-      width: 100%;
-    }
   }
 }

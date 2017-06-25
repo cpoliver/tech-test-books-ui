@@ -8,6 +8,8 @@ import SortMenu from '../SortMenu';
 import { searchParamsType } from '../../lib/types';
 import { ITEMS_PER_PAGE_OPTIONS, GENDERS, GENRES, SORTABLE_PROPERTIES } from '../../lib/constants';
 
+import './filter-bar.css';
+
 const FilterBar = ({ searchParams, updateSearchParams }) => (
   <Row className="filter-bar">
     <Col xs={12} md={6}>
