@@ -1,6 +1,10 @@
 @import '../../colors';
 
 .book-list {
+  &__grid {
+    margin-top: 5rem;
+  }
+
   &__pagination {
     background: $charcoal;
     margin-top: 1rem;
