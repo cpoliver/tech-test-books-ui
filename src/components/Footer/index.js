@@ -9,10 +9,10 @@ const Footer = ({ searchParams, totalPages, updateSearchParams }) => {
   const { page } = searchParams;
 
   return (
-    <footer className="footer navbar navbar-default navbar-fixed-bottom">
+    <footer id="footer" className="navbar navbar-default navbar-fixed-bottom">
       <Row>
         <Col xs={12} className="text-center">
-          <Pagination first last ellipsis boundaryLinks
+          <Pagination first last
             items={totalPages}
             maxButtons={3}
             activePage={page}

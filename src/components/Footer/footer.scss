@@ -1,12 +1,11 @@
 @import '../../colors';
 
 
-.footer {
-  background: $charcoal;
-  margin-top: 1rem;
-
-  position: absolute;
+#footer {
+  background: $paper;
+  border: 0;
   bottom: 0;
+  position: absolute;
   width: 100%;
 
   ul.pagination {
