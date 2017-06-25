@@ -1,0 +1,45 @@
+@import '../../colors';
+
+.book-list {
+  &__pagination {
+    background: $charcoal;
+    margin-top: 1rem;
+
+    ul.pagination {
+      cursor: pointer;
+
+      li.active a {
+        background: none;
+        color: $paper;
+
+        &:hover {
+          background: none;
+        }
+      }
+
+      li.disabled a {
+        background: none;
+        color: $pale-gold;
+        opacity: 0.25;
+
+        &:hover {
+          background: none;
+        }
+      }
+
+      a {
+        background: none;
+        border: none;
+        border-radius: 3rem;
+        color: $pale-gold;
+        font-size: 1.5rem;
+        margin: 0.5rem;
+
+        &:hover {
+          background: $charcoal;
+          color: $silk;
+        }
+      }
+    }
+  }
+}
