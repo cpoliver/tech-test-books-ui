@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const SERVER_URL = 'http://localhost:5000'; // TODO: Make dynamic & document how to change
+const SERVER_URL = 'https://tech-test-books.herokuapp.com'; // 'http://localhost:5000';
 
 export const fetchBooks = (queryString) => axios.get(`${SERVER_URL}/books?${queryString}`);
 
