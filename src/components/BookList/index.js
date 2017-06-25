@@ -9,7 +9,7 @@ const BookList = ({ books, searchParams, totalPages, updateSearchParams }) => {
   const { page } = searchParams;
 
   return (
-    <div>
+    <Row>
       <Row>
         {books.map((book) => <Book key={book._id} {...book} />)}
       </Row>
@@ -22,7 +22,7 @@ const BookList = ({ books, searchParams, totalPages, updateSearchParams }) => {
             onSelect={(newPage) => updateSearchParams({ page: newPage })} />
         </Col>
       </Row>
-    </div>
+    </Row>
   );
 }
 
