@@ -6,20 +6,17 @@ import { Button, Col, Grid, PageHeader, Row } from 'react-bootstrap';
 import AdminModal from '../AdminModal';
 import ErrorModal from '../ErrorModal';
 import BookList from '../BookList';
-import FilterMenu from '../FilterMenu';
-import ItemsPerPageMenu from '../ItemsPerPageMenu';
-import SortMenu from '../SortMenu';
+import FilterBar from '../FilterBar';
 import LoadingIndicator from '../LoadingIndicator';
 import { updateAdminState, updateSearchParams } from '../../actions';
 import { booksSelector, isLoadingSelector, searchParamsSelector, totalPagesSelector } from '../../selectors';
-import { ITEMS_PER_PAGE_OPTIONS, GENDERS, GENRES, SORTABLE_PROPERTIES } from '../../lib/constants';
 import { bookShape, searchParamsType } from '../../lib/types';
 
 const showAdminModal = (updateAdminState) => () => updateAdminState({ showModal: true });
 
 const App = ({ isLoading, books, searchParams, totalPages, updateAdminState, updateSearchParams }) => (
-  <Grid>
-    <Row className="filter-bar">
+  <Grid fluid={true}>
+    <Row className="header">
       <Col xs={12} md={12}>
         <PageHeader>
           Books List
@@ -28,35 +25,8 @@ const App = ({ isLoading, books, searchParams, totalPages, updateAdminState, upd
           </Button>
         </PageHeader>
       </Col>
-      <Col xs={12} md={6}>
-        <FilterMenu
-          placeholder="Filter Genres"
-          property="genre"
-          options={GENRES}
-          searchParams={searchParams}
-          updateSearchParams={updateSearchParams} />
-      </Col>
-      <Col xs={12} md={3}>
-        <FilterMenu
-          placeholder="Filter Author Genders"
-          property="author.gender"
-          options={GENDERS}
-          searchParams={searchParams}
-          updateSearchParams={updateSearchParams} />
-      </Col>
-      <Col xs={8} md={2}>
-        <SortMenu
-          options={SORTABLE_PROPERTIES}
-          searchParams={searchParams}
-          updateSearchParams={updateSearchParams} />
-      </Col>
-      <Col xs={4} md={1}>
-        <ItemsPerPageMenu
-          options={ITEMS_PER_PAGE_OPTIONS}
-          searchParams={searchParams}
-          updateSearchParams={updateSearchParams} />
-      </Col>
     </Row>
+    <FilterBar searchParams={searchParams} updateSearchParams={updateSearchParams} />
     <Row>
       <BookList
         books={books}
