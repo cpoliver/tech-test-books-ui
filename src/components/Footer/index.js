@@ -12,9 +12,9 @@ const Footer = ({ searchParams, totalPages, updateSearchParams }) => {
     <footer className="footer navbar navbar-default navbar-fixed-bottom">
       <Row>
         <Col xs={12} className="text-center">
-          <Pagination prev next first last ellipsis boundaryLinks
+          <Pagination first last ellipsis boundaryLinks
             items={totalPages}
-            maxButtons={5}
+            maxButtons={3}
             activePage={page}
             onSelect={(newPage) => updateSearchParams({ page: newPage })} />
         </Col>
