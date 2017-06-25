@@ -11,7 +11,8 @@ import {
   queryStringSelector,
   totalPagesSelector,
   adminModalSelector,
-  totalToAddSelector
+  totalToAddSelector,
+  errorModalSelector
 } from '../';
 
 const state = {
@@ -40,6 +41,10 @@ const state = {
   admin: {
     showModal: true,
     totalToAdd: 5
+  },
+  error: {
+    showModal: true,
+    error: { message: 'Some error' }
   }
 };
 
@@ -156,6 +161,15 @@ describe('selectors', () => {
   describe('totalToAddSelector', () => {
     it('should return the number of items to add', () => {
       expect(totalToAddSelector(state)).toEqual(100000);
+    });
+  });
+
+  describe('errorModalSelector', () => {
+    it('should return the error modal state', () => {
+      expect(errorModalSelector(state)).toEqual({
+        showModal: true,
+        error: { message: 'Some error' }
+      });
     });
   });
 });

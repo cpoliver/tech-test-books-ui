@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Button, Col, Grid, PageHeader, Row } from 'react-bootstrap';
 
 import AdminModal from '../AdminModal';
+import ErrorModal from '../ErrorModal';
 import BookList from '../BookList';
 import FilterMenu from '../FilterMenu';
 import ItemsPerPageMenu from '../ItemsPerPageMenu';
@@ -64,7 +65,8 @@ const App = ({ isLoading, books, searchParams, totalPages, updateAdminState, upd
         updateSearchParams={updateSearchParams} />
     </Row>
     <LoadingIndicator isLoading={isLoading} />
-    <AdminModal updateAdminState={updateAdminState} />
+    <AdminModal />
+    <ErrorModal />
   </Grid>
 );
 

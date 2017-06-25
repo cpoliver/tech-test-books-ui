@@ -18,8 +18,8 @@ const messages = [
   'A huge national library'
 ];
 
-const AdminModal = ({ adminModal, addBooks, deleteAllBooks, updateAdminState }) => {
-  const { isLoading, totalBooks, totalToAdd, showModal } = adminModal;
+const AdminModal = ({ adminState, addBooks, deleteAllBooks, updateAdminState }) => {
+  const { isLoading, totalBooks, totalToAdd, showModal } = adminState;
 
   return (
     <Modal backdrop={true} show={showModal} className="admin-modal">
@@ -62,14 +62,14 @@ const AdminModal = ({ adminModal, addBooks, deleteAllBooks, updateAdminState }) 
         </Row>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={() => updateAdminState({ showModal: false })} >Done</Button>
+        <Button onClick={() => updateAdminState({ showModal: false })}>Done</Button>
       </Modal.Footer>
     </Modal>
   );
 };
 
 AdminModal.propTypes = {
-  adminModal: PropTypes.shape({
+  adminState: PropTypes.shape({
     totalBooks: PropTypes.number.isRequired,
     totalToAdd: PropTypes.number.isRequired,
     showModal: PropTypes.bool.isRequired
@@ -80,7 +80,7 @@ AdminModal.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  adminModal: adminModalSelector(state)
+  adminState: adminModalSelector(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

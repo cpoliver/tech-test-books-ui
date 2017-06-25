@@ -42,3 +42,5 @@ export const adminModalSelector = createSelector(
   adminSelector,
   (totalBooks, admin) => ({ ...admin, totalBooks })
 );
+
+export const errorModalSelector = ({ error }) => error;
