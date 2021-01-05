@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://cpoliver.github.io/tech-test-books-ui",
   "dependencies": {
-    "axios": "^0.16.2",
+    "axios": "^0.21.1",
     "bootstrap": "^3.3.7",
     "ramda": "^0.24.1",
     "rc-slider": "^8.1.3",
